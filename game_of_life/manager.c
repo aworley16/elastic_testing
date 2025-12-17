@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
  
    if(original_rank == 0){
 	   MPI_Comm_spawn("worker.exe", MPI_ARGV_NULL, 1, 
-                 MPI_INFO_NULL, 0, MPI_COMM_SELF, &everyone, 
+                 MPI_INFO_NULL, 0, MPI_COMM_WORLD, &everyone, 
                  MPI_ERRCODES_IGNORE);
 				  
 		int remote_size = -1;
@@ -39,6 +39,9 @@ int main(int argc, char *argv[])
 		MPI_Comm_size(universe, &universe_size);
 		printf("ORIGINAL_RANK 0, universe %d of %d \n", universe_rank, universe_size);
    }	
+   
+   MPI_Inter
+   
  
    MPI_Finalize(); 
    return 0; 
