@@ -1,0 +1,3208 @@
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+RANK 0 after phase end
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+RANK 1 after phase end
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53c190 
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662c9750 
+RANK 0 at halo start
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+0 -- 0x5f6d8d53d650 
+RANK 0 at halo start
+0 -- comm_size 2 
+0 -- sending 102 chars to 1 tag 0
+0 -- sending 102 chars to -2  tag 0
+0 -- after prev wait
+0 -- after next wait
+RANK 0 after halo 
+RANK 0 after phase end
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+1 -- 0x56fe662cac10 
+RANK 1 at halo start
+1 -- comm_size 2 
+1 -- sending 102 chars to -2 tag 0
+1 -- sending 102 chars to 0  tag 0
+1 -- after prev wait
+1 -- after next wait
+RANK 1 after halo 
+RANK 1 after phase end
+Exeution time: 0.007080
+Endstate after 100 timesteps displayed for 10 seconds
+Exeution time: 0.007079
+Endstate after 100 timesteps displayed for 10 seconds
