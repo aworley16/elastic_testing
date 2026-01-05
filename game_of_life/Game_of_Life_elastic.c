@@ -85,7 +85,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		
-		printf("%d at spawning\n", old_uni_rank);
+		printf("%d at spawning -- new to spawn %d \n", old_uni_rank, phase_size-uni_size);
 		
 		MPI_Comm_spawn("./gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
 		if(old_uni_rank == 0){
