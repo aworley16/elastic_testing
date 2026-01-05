@@ -75,7 +75,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	
 	//if phase is same size then just use pre-existing comms
 	if(phase_size == old_phase_size){
-		printf("NO CHANGE --%d sees %d\n", uni_size, phase_size); 
+		printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
 		*color= 1; 
 		return -1;
 	}
