@@ -501,14 +501,18 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
     //printf("%d -- sending to %d tag %d\n", rank, next, 0);
 	//printf("%d -- sending to %d  tag %d\n", rank, prev, 0); 
 	
+	if(next > -1){printf("%d --- sending message to %d \n", rank, next);}
 	MPI_Send(local+(N+2)*(rows), (N+2), MPI_CHAR, next, 0, comm);
 	
-	printf("%d --- waiting on message from %d \n", rank, prev);
+	if(prev > -1){printf("%d --- waiting on message from %d \n", rank, prev);}
 	MPI_Recv(local, (N+2), MPI_CHAR, prev, 0, comm, &status_prev);
 	
 	printf("%d --- message to next complete\n", rank);
 	
+	if(prev > -1){printf("%d --- sending message to %d \n", rank, prev);}
 	MPI_Send(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm);
+	
+	if(prev > -1){printf("%d --- waiting on message from %d \n", rank, next);}
 	MPI_Recv(local+(N+2)*(rows+1), (N+2), MPI_CHAR, next, 0, comm, &status_next);
 	
 	printf("%d --- message to prev complete\n", rank);
