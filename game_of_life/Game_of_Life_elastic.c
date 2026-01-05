@@ -77,11 +77,11 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	if(phase_size == old_phase_size){
 		printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
 		*color= 1; 
-		return -1;
+		return 0;
 	}
 	
 	//if needed spawn additional processes expand universe	
-	if(phase_size > uni_size){
+	else if(phase_size > uni_size){
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		
@@ -259,7 +259,8 @@ int main(int argc, char *argv[])
 		MPI_Comm_size(phase_comm,&phase_size);
 		rows = N/phase_size;
 		
-		
+		printf("rank %d at phase branch -- color %d \n", global_rank, color);
+		fflush(stdout);
 		if(color == 1){
 			//execute phase
 			for (int i = 0; i < nsteps; i++)
