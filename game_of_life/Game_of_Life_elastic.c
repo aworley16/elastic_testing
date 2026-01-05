@@ -77,6 +77,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	if(phase_size == old_phase_size){
 		printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
 		*color= 1; 
+		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
 		return 0;
 	}
 	
@@ -106,6 +107,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		//MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
 		//MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
 		universe = new_uni;
+		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
 	}
  	
 	//determine what processes will be active this phase.	
@@ -113,12 +115,9 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	MPI_Comm_rank(universe, &uni_rank);
 	if(uni_rank > phase_size){*color = 1;}
 
-	printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
-	fflush(stdout);
-
 	//delete old phase_comm and create new phase_comm
 	//MPI_Comm_free(&phase_comm)
-	MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
+	
 	
 	MPI_Comm_size(phase_comm, &old_phase_size);
 	printf("%d sees phase_comm of size %d \n", old_uni_rank, old_phase_size);
