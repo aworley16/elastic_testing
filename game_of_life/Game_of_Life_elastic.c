@@ -75,7 +75,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	
 	//if phase is same size then just use pre-existing comms
 	if(phase_size == old_phase_size){
-		//printf("NO CHANGE \n"); 
+		printf("NO CHANGE \n"); 
 		*color= 1; 
 		return -1;
 	}
@@ -113,16 +113,11 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	MPI_Comm_rank(universe, &uni_rank);
 	if(uni_rank > phase_size){*color = 1;}
 
-	//printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
-	//fflush(stdout);
-
-	//delete old phase_comm and create new phase_comm
-	//MPI_Comm_free(&phase_comm);
-	MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
-	printf("after %d comm_split \n", old_uni_rank);
+	printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
 	fflush(stdout);
 
-	
+	//delete old phase_comm and create new phase_comm
+	//MPI_Comm_free(&phase_comm)
 	return 0;
 }
 
@@ -229,8 +224,8 @@ int main(int argc, char *argv[])
 		
 		MPI_Comm_size(universe, &size);  
 		MPI_Comm_rank(universe, &global_rank);  
-		//printf("Spawned new universe siz -- %d \n", size);
-		printf("Spawned new universe rank -- %d \n", global_rank);
+		
+		printf("Spawned new process rank -- %d \n", global_rank);
 	}
 	MPI_Comm_dup(universe, &phase_comm);
     starttime = MPI_Wtime();	
@@ -243,6 +238,10 @@ int main(int argc, char *argv[])
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
+		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
+		printf("after %d comm_split \n", old_uni_rank);
+		fflush(stdout);
+		
 		setup_grids(&local, &local_new, N, phase_comm);
 		
 		setup_time = MPI_Wtime()-setup_start;
