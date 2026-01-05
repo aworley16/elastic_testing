@@ -238,8 +238,8 @@ int main(int argc, char *argv[])
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
-		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
-		printf("after %d comm_split \n", old_uni_rank);
+		MPI_Comm_split(universe, color, global_rank, &phase_comm);
+		printf("after %d comm_split \n", global_rank);
 		fflush(stdout);
 		
 		setup_grids(&local, &local_new, N, phase_comm);
