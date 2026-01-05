@@ -108,7 +108,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	if(uni_rank > phase_size){*color = 1;}
 
 	//delete old phase_comm and create new phase_comm
-	MPI_Comm_free(&phase_comm);
+	//MPI_Comm_free(&phase_comm);
 	MPI_Comm_split(new_uni, *color, uni_rank, &phase_comm);
 	universe = new_uni;
 	
