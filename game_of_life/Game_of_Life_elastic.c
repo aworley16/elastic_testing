@@ -75,7 +75,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm* universe, 
 	
 	//if phase is same size then just use pre-existing comms
 	if(phase_size == old_phase_size){
-		printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
+		//printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
 		*color= 1; 
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 		return 0;
@@ -110,18 +110,6 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm* universe, 
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 	}
  	
-	//determine what processes will be active this phase.	
-	MPI_Comm_size(*universe, &uni_size);
-	MPI_Comm_rank(*universe, &uni_rank);
-	if(uni_rank > phase_size){*color = 1;}
-
-	//delete old phase_comm and create new phase_comm
-	//MPI_Comm_free(&phase_comm)
-	
-	
-	MPI_Comm_size(*phase_comm, &old_phase_size);
-	printf("%d sees phase_comm of size %d \n", old_uni_rank, old_phase_size);
-	fflush(stdout);
 	return 0;
 }
 
@@ -156,7 +144,7 @@ int setup_grids(char** localw, char** local_neww, int N, MPI_Comm phase_comm){
 
 int main(int argc, char *argv[])
 {
-	printf("NEW PROC!!! \n");
+	//printf("NEW PROC!!! \n");
     
 	int N = 60;//27720;               // Evenly Divisible by 1-16, 32, 64, & 128
 	char type_of_matrix = 's';  // inital state
@@ -221,7 +209,7 @@ int main(int argc, char *argv[])
 	}
 	else if(parent != MPI_COMM_NULL) //else if spawned sync with parent and help recreate universal comm
 	{
-		printf("Spawned process at recv  -- world size %d \n", size);
+		//printf("Spawned process at recv  -- world size %d \n", size);
 		MPI_Recv(&phase, 1, MPI_INT, 0, 1, parent, &status); 
 		//printf("spawned starting at phase %d \n", phase);
 		MPI_Intercomm_merge(parent, 0, &universe);
@@ -229,7 +217,7 @@ int main(int argc, char *argv[])
 		MPI_Comm_size(universe, &size);  
 		MPI_Comm_rank(universe, &global_rank);  
 		
-		printf("Spawned new process rank -- %d \n", global_rank);
+		//printf("Spawned new process rank -- %d \n", global_rank);
 		phase_comm = universe;
 	}
 	
@@ -244,13 +232,13 @@ int main(int argc, char *argv[])
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, &universe, &phase_comm, &color);
-		printf("rank %d after comm setup \n", global_rank);
+		//printf("rank %d after comm setup \n", global_rank);
 		fflush(stdout);
 		
 		int phase_check;
 		MPI_Comm_size(phase_comm, &phase_check);
 		
-		printf("comm_split %d of %d \n", global_rank, phase_check);
+		//printf("comm_split %d of %d \n", global_rank, phase_check);
 		fflush(stdout);
 		
 		setup_grids(&local, &local_new, N, phase_comm);
@@ -260,13 +248,13 @@ int main(int argc, char *argv[])
 		MPI_Comm_size(phase_comm,&phase_size);
 		rows = N/phase_size;
 		
-		printf("rank %d at phase branch -- color %d \n", global_rank, color);
+		//printf("rank %d at phase branch -- color %d \n", global_rank, color);
 		fflush(stdout);
 		if(color == 1){
 			//execute phase
 			for (int i = 0; i < nsteps; i++)
 			{
-				printf("rank %d at calc  \n", global_rank);
+				//printf("rank %d at calc  \n", global_rank);
 				fflush(stdout);
 				local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, rows);
@@ -283,6 +271,8 @@ int main(int argc, char *argv[])
 			phase_time=MPI_Wtime()-phase_start;
 			
 			printf("%d AFTER HALO \n", global_rank);
+			fflush(stdout);
+			
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
