@@ -85,9 +85,10 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	MPI_Comm_size(phase_comm, &old_phase_size);
 	MPI_Comm_size(universe, &uni_size);
 	MPI_Comm_rank(universe, &old_uni_rank);
+	MPI_Comm new_uni;
 	
 	//if phase is same size then just use pre-existing comms
-	if(phase_size == old_phase_size){return;}
+	if(phase_size == old_phase_size){return -1;}
 	
 	//if needed spawn additional processes expand universe	
 	if(phase_size > uni_size){
