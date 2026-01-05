@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
 	/* Global IDs */
     MPI_Comm_size(universe, &size);     
     MPI_Comm_rank(universe, &global_rank);    
-	
+	MPI_Comm_dup(universe, &phase_comm);
 	//check if this is a spawned child processes
     MPI_Comm_get_parent(&parent);
 	
@@ -233,6 +233,7 @@ int main(int argc, char *argv[])
 		printf("Spawned new process rank -- %d \n", global_rank);
 		phase_comm = universe;
 	}
+	
 	
     starttime = MPI_Wtime();	
 
