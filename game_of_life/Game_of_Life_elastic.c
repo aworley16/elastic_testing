@@ -106,7 +106,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm* universe, 
 		//if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
 		//MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
 		//MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
-		MPI_Comm_dup(new_uni, universe);
+		universe = &new_uni;
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 	}
  	
@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
 			}
 			MPI_Barrier(phase_comm);	
 		}
-		printf("--\n");
+		printf("-- \n");
 		fflush(stdout);	
 		MPI_Barrier(phase_comm);		
 	}
