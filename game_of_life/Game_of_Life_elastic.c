@@ -89,7 +89,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		
 		MPI_Comm_spawn("./gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
 		if(old_uni_rank == 0){
-			printf("sending %d to spawn\n", phase);
+			printf("sending %d to spawn\n", *phase);
 			MPI_Send(phase, 1, MPI_INT, 0, 1, bridge);
 		}
 		
