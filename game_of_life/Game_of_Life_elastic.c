@@ -61,15 +61,15 @@ char* initalize_root_board(int N, char seed){
 }
 
 //update universe, phase_comm, color, and makes sure head proc is known everywhere if it changed
-int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, MPI_Comm phase_comm, int* color){
+int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm* universe, MPI_Comm* phase_comm, int* color){
 	int old_phase_size = -1;
 	int old_uni_rank = -1;
 	int uni_size = -1;
 	int uni_rank = -1;
 
-	MPI_Comm_size(phase_comm, &old_phase_size);
-	MPI_Comm_rank(universe, &old_uni_rank);
-	MPI_Comm_size(universe, &uni_size);
+	MPI_Comm_size(*phase_comm, &old_phase_size);
+	MPI_Comm_rank(*universe, &old_uni_rank);
+	MPI_Comm_size(*universe, &uni_size);
 	MPI_Comm new_uni;
 	
 	
@@ -77,7 +77,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	if(phase_size == old_phase_size){
 		printf("NO CHANGE --%d sees %d\n", old_uni_rank, phase_size); 
 		*color= 1; 
-		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
+		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 		return 0;
 	}
 	
@@ -106,20 +106,20 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		//if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
 		//MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
 		//MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
-		universe = new_uni;
-		MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
+		MPI_Comm_dup(new_uni, universe);
+		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 	}
  	
 	//determine what processes will be active this phase.	
-	MPI_Comm_size(universe, &uni_size);
-	MPI_Comm_rank(universe, &uni_rank);
+	MPI_Comm_size(*universe, &uni_size);
+	MPI_Comm_rank(*universe, &uni_rank);
 	if(uni_rank > phase_size){*color = 1;}
 
 	//delete old phase_comm and create new phase_comm
 	//MPI_Comm_free(&phase_comm)
 	
 	
-	MPI_Comm_size(phase_comm, &old_phase_size);
+	MPI_Comm_size(*phase_comm, &old_phase_size);
 	printf("%d sees phase_comm of size %d \n", old_uni_rank, old_phase_size);
 	fflush(stdout);
 	return 0;
@@ -243,7 +243,7 @@ int main(int argc, char *argv[])
 		phase_size = phases[phase];
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
-		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
+		setup_comms(&head_proc, phase_size, &phase, &universe, &phase_comm, &color);
 		printf("rank %d after comm setup \n", global_rank);
 		fflush(stdout);
 		
@@ -303,10 +303,12 @@ int main(int argc, char *argv[])
 				printf("%d done with phase %d \n", global_rank, phase);
 				fflush(stdout);
 			}
-			MPI_Barrier(universe);	
+			MPI_Barrier(phase_comm);	
 		}
-		printf("\n\n\n");		
+		printf("--\n");
+		fflush(stdout);		
 	}
+	MPI_Barrier(universe);	
 	endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	//MPI_Reduce(&local_halo_time, &total_halo_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
