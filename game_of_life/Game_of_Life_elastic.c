@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
 	
 	//Have root print the results
 		if(global_rank == 0 ){
-		printf("Exeution time: %f\n", time);
+		printf("Exeution time: %f\n", endtime);
     } 
     MPI_Finalize();
 
