@@ -75,7 +75,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	
 	//if phase is same size then just use pre-existing comms
 	if(phase_size == old_phase_size){
-		printf("NO CHANGE \n"); 
+		//printf("NO CHANGE \n"); 
 		*color= 1; 
 		return -1;
 	}
@@ -87,11 +87,11 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		
 		printf("%d at spawning\n", old_uni_rank);
 		
-		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
+		MPI_Comm_spawn("./gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
 		if(old_uni_rank == 0){
-			MPI_Send(&phase, 1, MPI_INT, 0, 1, bridge);
+			printf("sending %d to spawn\n", phase);
+			MPI_Send(phase, 1, MPI_INT, 0, 1, bridge);
 		}
-		printf("%d after spawning\n", old_uni_rank);
 		
 		MPI_Barrier(bridge);
 		
@@ -208,18 +208,20 @@ int main(int argc, char *argv[])
 	//if it is the original world then have root setup initial grid
     if(parent == MPI_COMM_NULL && global_rank==0){
 		boardState = initalize_root_board(N, type_of_matrix);
-		printf("ROOT process %d at loop \n", global_rank);
 	}
 	else if(parent != MPI_COMM_NULL) //else if spawned sync with parent and help recreate universal comm
 	{
-		printf("Spawned process at recv \n");
+		printf("Spawned process at recv  -- world size %d \n", size);
 		MPI_Recv(&phase, 1, MPI_INT, 0, 1, parent, &status); 
 		printf("spawned starting at phase %d \n", phase);
-		MPI_Barrier(parent);
-	}else{	
-		printf("Other process %d at loop \n", global_rank);
+		MPI_Intercomm_merge(parent, 0, &universe);
+		
+		MPI_Comm_size(universe, &size);  
+		MPI_Comm_rank(universe, &global_rank);  
+		printf("Spawned new universe siz -- %d \n", size);
+		printf("Spawned new universe siz -- %d \n", global_rank);
 	}
-	MPI_Barrier(universe);	
+	
     starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
@@ -244,8 +246,6 @@ int main(int argc, char *argv[])
 				Step(&local, &local_new, N, rows);
 				local_calc_time += MPI_Wtime() - local_calc_start;
 				
-				printf("%d AT HALO \n", global_rank);
-				
 				local_halo_start = MPI_Wtime();
 				Halo(local, N, rows, global_rank, phase_comm);
 				local_halo_time += MPI_Wtime()- local_halo_start;				
@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
 			
 			phase_time=MPI_Wtime()-phase_start;
 			
-			printf("%d AFTER HALO \n", global_rank);
+			//printf("%d AFTER HALO \n", global_rank);
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
