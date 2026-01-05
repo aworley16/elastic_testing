@@ -78,7 +78,7 @@ char* initalize_root_board(int N, char seed){
 //update universe, phase_comm, color, and makes sure head proc is known everywhere if it changed
 int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, MPI_Comm phase_comm, int* color){
 	int old_phase_size = -1;
-	int old_uni_rank = -1
+	int old_uni_rank = -1;
 	int uni_size = -1;
 	int uni_rank = -1;
 	
@@ -91,6 +91,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	
 	//if needed spawn additional processes expand universe	
 	if(phase_size > uni_size){
+		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, universe, &bridge, MPI_ERRCODES_IGNORE);
 		MPI_Intercomm_merge(bridge, 0, &new_uni);
@@ -153,7 +154,7 @@ int main(int argc, char *argv[])
 	char type_of_matrix = 's';  //
     int nsteps = 1000;         // The number of iterations per phase
 	
-	int num_phases = 3;
+	int num_phases = 1;
 	int phases[] = {2,3,4,5,6,7,8};
 		
 	double waitTime = 0;
