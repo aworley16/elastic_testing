@@ -274,16 +274,16 @@ int main(int argc, char *argv[])
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-		MPI_Barrier(universe);
+		//MPI_Barrier(universe);
 	}
 	endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	//MPI_Reduce(&local_halo_time, &total_halo_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	
 	//Have root print the results
-	/* 	if(global_rank == 0 ){
+		if(global_rank == 0 ){
 		printf("Exeution time: %f\n", time);
-    } */
+    } 
     MPI_Finalize();
 
     return 0;
