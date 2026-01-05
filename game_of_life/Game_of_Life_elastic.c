@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
 {
 	printf("NEW PROC!!! \n");
     
-	int N = 27720;               // Evenly Divisible by 1-16, 32, 64, & 128
+	int N = 60;//27720;               // Evenly Divisible by 1-16, 32, 64, & 128
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 3;
@@ -231,8 +231,9 @@ int main(int argc, char *argv[])
 		MPI_Comm_rank(universe, &global_rank);  
 		
 		printf("Spawned new process rank -- %d \n", global_rank);
+		phase_comm = universe;
 	}
-	MPI_Comm_dup(universe, &phase_comm);
+	
     starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
@@ -282,7 +283,7 @@ int main(int argc, char *argv[])
 			//log times 
 			if(global_rank==0){
 				//     id size  as  ac  mc halo, total
-				printf("%d, %d, %f, %f, %f, %f, %f \n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time);
+				printf("%d, %d, %f, %f, %f, %f, %f \n\n\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time);
 			}
 		}
 		//reset local variables --- TODO remove debug barrier
