@@ -86,11 +86,11 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm* universe, 
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		
-		printf("%d at spawning -- new to spawn %d \n", old_uni_rank, expand_num);
+		//printf("%d at spawning -- new to spawn %d \n", old_uni_rank, expand_num);
 		
 		MPI_Comm_spawn("./gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
 		if(old_uni_rank == 0){
-			printf("sending %d to spawn\n", *phase);
+			//printf("sending %d to spawn\n", *phase);
 			MPI_Send(phase, 1, MPI_INT, 0, 1, bridge);
 		}
 	
@@ -265,7 +265,10 @@ int main(int argc, char *argv[])
 				
 				local_halo_start = MPI_Wtime();
 				Halo(local, N, rows, global_rank, phase_comm);
-				local_halo_time += MPI_Wtime()- local_halo_start;				
+				local_halo_time += MPI_Wtime()- local_halo_start;	
+
+				printf("rank %d after Halo \n", global_rank);
+				fflush(stdout);
 			}
 			
 			phase_time=MPI_Wtime()-phase_start;
