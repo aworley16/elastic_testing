@@ -88,16 +88,20 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		printf("%d at spawning\n", old_uni_rank);
 		
 		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
-		
+		if(old_uni_rank == 0){
+			MPI_Send(&phase, 1, MPI_INT, 0, 1, bridge);
+		}
 		printf("%d after spawning\n", old_uni_rank);
+		
+		MPI_Barrier(bridge);
 		
 		MPI_Intercomm_merge(bridge, 0, &new_uni);
 		
 		//make sure everyone knows who root is. should be 0, but being paranoid here.
 		MPI_Comm_rank(new_uni, &uni_rank);
-		if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
-		MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
-		MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
+		//if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
+		//MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
+		//MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
 	}
  	
 	//determine what processes will be active this phase.	
@@ -106,6 +110,8 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	//delete old phase_comm and create new phase_comm
 	MPI_Comm_free(&phase_comm);
 	MPI_Comm_split(new_uni, *color, uni_rank, &phase_comm);
+	universe = new_uni;
+	
 	return 0;
 }
 
@@ -206,10 +212,10 @@ int main(int argc, char *argv[])
 	}
 	else if(parent != MPI_COMM_NULL) //else if spawned sync with parent and help recreate universal comm
 	{
-		printf("Spawned process at BCAST \n");
-		MPI_Bcast(&head_proc, 1, MPI_INT, head_proc, universe); //broadcast so everyone knows who root is. 
-		MPI_Bcast(&nsteps, 1, MPI_INT, head_proc, universe); //broadcast so everyone knows who root is. 
-		MPI_Bcast(&phase, 1, MPI_INT, head_proc, universe);     //broadcast so that the newbies can skip ahead 
+		printf("Spawned process at recv \n");
+		MPI_Recv(&phase, 1, MPI_INT, 0, 1, parent, &status); 
+		printf("spawned starting at phase %d \n", phase);
+		MPI_Barrier(parent);
 	}else{	
 		printf("Other process %d at loop \n", global_rank);
 	}
@@ -438,7 +444,7 @@ void rand_grid(int N, int fillRatio)
 
 // For printing the matrices in the terminal
 void print_matrix(char* A, int n, int rows){
-    int i,j;
+    int i;
     for (i=0; i<(rows+2)*(n+2); i++) {
         printf("%c ", A[i]);
         if ((i+1)%(n+2) == 0) printf("\n");
