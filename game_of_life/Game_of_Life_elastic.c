@@ -100,17 +100,17 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		//make sure everyone knows who root is. should be 0, but being paranoid here.
 		MPI_Comm_rank(new_uni, &uni_rank);
 		if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
-		MPI_Bcast(head_proc, 1, MPI_INT, head_proc, new_uni); //broadcast so everyone knows who root is. 
-		MPI_Bcast(phase, 1, MPI_INT, head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
+		MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
+		MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
 	}
  	
 	//determine what processes will be active this phase.	
 	if(uni_rank > phase_size){*color = 1;}
 
 	//delete old phase_comm and create new phase_comm
-	MPI_Comm_free(phase_comm);
-	MPI_Comm_split(new_uni, *color, uni_rank, phase_comm);
-	return;
+	MPI_Comm_free(@phase_comm);
+	MPI_Comm_split(new_uni, *color, uni_rank, @phase_comm);
+	return 0;
 }
 
 //given a phase_comm, allocate space for local rows
@@ -128,14 +128,14 @@ int setup_grids(char** localw, char** local_neww, int N, MPI_Comm phase_comm){
 	int rows = 0;
 	int remander = N%size;
 	rows = N/size;
-	if(rank < remainder){row++;}
+	if(rank < remander){rows++;}
 	int local_size = (N+2) * (rows+2) * sizeof(char);
 	
-	char* temp_ptr = (char *)realloc(local_size);
+	char* temp_ptr = (char *)realloc(local, local_size);
 	if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local); exit(EXIT_FAILURE); }
 	*localw = temp_ptr;
 		
-	temp_ptr = (char *)realloc(local_size);
+	temp_ptr = (char *)realloc(local_new,local_size);
 	if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local_new); exit(EXIT_FAILURE); }
 	*local_neww= temp_ptr;
 	
@@ -193,8 +193,8 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &size);     
     MPI_Comm_rank(MPI_COMM_WORLD, &global_rank);    
 	MPI_Comm phase_comm;
-	MPI_Comm universe;
-	
+	//MPI_Comm universe;
+	MPI_Comm parent;
 	//check if this is a spawned child processes
     MPI_Comm_get_parent(&parent);
 	//if it is the original world then have root setup initial grid
