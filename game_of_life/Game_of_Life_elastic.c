@@ -497,9 +497,9 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
 	int prev = rank-1;
 	if(next >= size){next = MPI_PROC_NULL;}
 	if(prev < 0)   {prev = MPI_PROC_NULL;}
-	//printf("%d -- comm_size %d \n", rank, size);
-    //printf("%d -- sending %d chars to %d tag %d\n", rank, N+2, next, 0);
-	//printf("%d -- sending %d chars to %d  tag %d\n", rank, N+2, prev, 0); 
+	printf("%d -- comm_size %d \n", rank, size);
+    printf("%d -- sending to %d tag %d\n", rank, next, 0);
+	printf("%d -- sending to %d  tag %d\n", rank, prev, 0); 
 	MPI_Isend(local+(N+2)*(rows), (N+2), MPI_CHAR, next, 0, comm, &send_next);
 	MPI_Isend(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm, &send_prev);
 		
