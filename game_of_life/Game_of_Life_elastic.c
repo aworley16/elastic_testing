@@ -239,7 +239,10 @@ int main(int argc, char *argv[])
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
 		MPI_Comm_split(universe, color, global_rank, &phase_comm);
-		printf("after %d comm_split \n", global_rank);
+		int phase_check;
+		MPI_Comm_size(phase_comm, &phase_check);
+		
+		printf("comm_split %d of %d \n", global_rank, phase_check);
 		fflush(stdout);
 		
 		setup_grids(&local, &local_new, N, phase_comm);
@@ -280,7 +283,7 @@ int main(int argc, char *argv[])
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-		//MPI_Barrier(universe);
+		MPI_Barrier(universe);
 	}
 	endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
