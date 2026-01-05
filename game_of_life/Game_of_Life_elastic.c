@@ -118,6 +118,11 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 
 	//delete old phase_comm and create new phase_comm
 	//MPI_Comm_free(&phase_comm)
+	MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
+	
+	MPI_Comm_size(phase_comm, &old_phase_size);
+	printf("%d sees phase_comm of size %d \n", old_uni_rank, old_phase_size);
+	fflush(stdout);
 	return 0;
 }
 
@@ -238,7 +243,7 @@ int main(int argc, char *argv[])
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
-		MPI_Comm_split(universe, color, global_rank, &phase_comm);
+		
 		int phase_check;
 		MPI_Comm_size(phase_comm, &phase_check);
 		
