@@ -504,8 +504,8 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
 	MPI_Isend(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm, &send_prev);
 		
 	
-	//printf("%d -- waiting on %d chars from %d tag %d\n", rank, N+2, next,0);
-	//printf("%d -- waiting on %d chars from %d  tag %d\n", rank, N+2, prev,0); 		
+	printf("%d -- waiting on %d chars from %d tag %d\n", rank, N+2, next,0);
+	printf("%d -- waiting on %d chars from %d  tag %d\n", rank, N+2, prev,0); 		
 	MPI_Recv(local, (N+2), MPI_CHAR, prev, 0, comm, &status_prev);
 	printf("%d -- after first recv\n", rank);
 	
