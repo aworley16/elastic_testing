@@ -85,7 +85,7 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		
-		printf("%d at spawning -- new to spawn %d \n", old_uni_rank, phase_size-uni_size);
+		printf("%d at spawning -- new to spawn %d \n", old_uni_rank, expand_num);
 		
 		MPI_Comm_spawn("./gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
 		if(old_uni_rank == 0){
@@ -95,13 +95,13 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	
 		MPI_Intercomm_merge(bridge, 0, &new_uni);
 		
-		printf(" %d after merge \n", old_uni_rank);
-		fflush(stdout);
+		//printf(" %d after merge \n", old_uni_rank);
+		//fflush(stdout);
 		//make sure everyone knows who root is. should be 0, but being paranoid here.
 		MPI_Comm_rank(new_uni, &uni_rank);
 		
-		printf("old rank %d is now rank %d \n", old_uni_rank, uni_rank);
-		fflush(stdout);
+		//printf("old rank %d is now rank %d \n", old_uni_rank, uni_rank);
+		//fflush(stdout);
 		//if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
 		//MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, new_uni); //broadcast so everyone knows who root is. 
 		//MPI_Bcast(phase, 1, MPI_INT, *head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
@@ -112,6 +112,9 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	MPI_Comm_size(universe, &uni_size);
 	MPI_Comm_rank(universe, &uni_rank);
 	if(uni_rank > phase_size){*color = 1;}
+
+	printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
+	fflush(stdout);
 
 	//delete old phase_comm and create new phase_comm
 	//MPI_Comm_free(&phase_comm);
@@ -202,7 +205,7 @@ int main(int argc, char *argv[])
 	MPI_Comm phase_comm;
 	MPI_Comm parent;
 	MPI_Comm_dup(MPI_COMM_WORLD, &universe);
-	MPI_Comm_dup(MPI_COMM_WORLD, &phase_comm);
+	
 	
 	/* Global IDs */
     MPI_Comm_size(universe, &size);     
@@ -227,7 +230,7 @@ int main(int argc, char *argv[])
 		printf("Spawned new universe siz -- %d \n", size);
 		printf("Spawned new universe rank -- %d \n", global_rank);
 	}
-	
+	MPI_Comm_dup(universe, &phase_comm);
     starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
