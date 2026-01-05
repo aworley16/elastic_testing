@@ -108,8 +108,8 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	if(uni_rank > phase_size){*color = 1;}
 
 	//delete old phase_comm and create new phase_comm
-	MPI_Comm_free(@phase_comm);
-	MPI_Comm_split(new_uni, *color, uni_rank, @phase_comm);
+	MPI_Comm_free(&phase_comm);
+	MPI_Comm_split(new_uni, *color, uni_rank, &phase_comm);
 	return 0;
 }
 
@@ -139,7 +139,7 @@ int setup_grids(char** localw, char** local_neww, int N, MPI_Comm phase_comm){
 	if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local_new); exit(EXIT_FAILURE); }
 	*local_neww= temp_ptr;
 	
-	return; 
+	return 0; 
 }
 
 int main(int argc, char *argv[])
@@ -155,6 +155,7 @@ int main(int argc, char *argv[])
 	char type_of_matrix = 's';  //
     int nsteps = 1000;         // The number of iterations per phase
 	
+	int phase = 0; 
 	int num_phases = 1;
 	int phases[] = {2,3,4,5,6,7,8};
 		
@@ -164,6 +165,8 @@ int main(int argc, char *argv[])
 	int phase_size;
 	int global_rank;
     int i, j;
+	int* head_proc;
+    *head_proc = 0;	
     char *local = NULL;
 	char *local_new = NULL;
     double starttime, time;
@@ -193,29 +196,33 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &size);     
     MPI_Comm_rank(MPI_COMM_WORLD, &global_rank);    
 	MPI_Comm phase_comm;
-	//MPI_Comm universe;
+	MPI_Comm universe;
 	MPI_Comm parent;
 	//check if this is a spawned child processes
     MPI_Comm_get_parent(&parent);
+	
 	//if it is the original world then have root setup initial grid
     if(parent == MPI_COMM_NULL && global_rank==0){
 		boardState = initalize_root_board(N, type_of_matrix);
 	}
-	else //else is spawned sync with parent and help recreate universal comm
+	else if(parent != MPI_COMM_NULL) //else if spawned sync with parent and help recreate universal comm
 	{
-		
+		MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, universe); //broadcast so everyone knows who root is. 
+		MPI_Bcast(&phase, 1, MPI_INT, *head_proc, universe);     //broadcast so that the newbies can skip ahead 
 	}	
  
+    
     starttime = MPI_Wtime();	
 
-	for(int phase = 0; phase < num_phases; phase++)
+	for(; phase < num_phases; phase++)
 	{
 		setup_start = MPI_Wtime();
-		color = setup_phase(&local, &local_new, N, phase, phases[phase], global_rank, &phase_comm);
+		setup_comms(head_proc, phase_size, &phase, universe, phase_comm, &color);
+		setup_grids(&local, &local_new, N, phase_comm);
 		setup_end = MPI_Wtime();
 		
 		MPI_Comm_size(phase_comm,&phase_size);
-		rows = N/phases_size;
+		rows = N/phase_size;
 		if(color == 1){
 			//execute phase
 			for (i = 0; i < nsteps; i++)
