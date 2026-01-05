@@ -68,6 +68,8 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	int uni_rank = -1;
 
 	MPI_Comm_size(phase_comm, &old_phase_size);
+	MPI_Comm_rank(universe, &old_uni_rank);
+	MPI_Comm_size(universe, &uni_size);
 	MPI_Comm new_uni;
 	
 	
