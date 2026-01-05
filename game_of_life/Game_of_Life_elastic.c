@@ -222,12 +222,12 @@ int main(int argc, char *argv[])
 	{
 		printf("Spawned process at recv  -- world size %d \n", size);
 		MPI_Recv(&phase, 1, MPI_INT, 0, 1, parent, &status); 
-		printf("spawned starting at phase %d \n", phase);
+		//printf("spawned starting at phase %d \n", phase);
 		MPI_Intercomm_merge(parent, 0, &universe);
 		
 		MPI_Comm_size(universe, &size);  
 		MPI_Comm_rank(universe, &global_rank);  
-		printf("Spawned new universe siz -- %d \n", size);
+		//printf("Spawned new universe siz -- %d \n", size);
 		printf("Spawned new universe rank -- %d \n", global_rank);
 	}
 	MPI_Comm_dup(universe, &phase_comm);
@@ -235,6 +235,8 @@ int main(int argc, char *argv[])
 
 	for(; phase < num_phases; phase++)
 	{
+		printf("rank %d starting phase %d \n", global_rank, phase);
+		fflush(stdout);
 		phase_size = phases[phase];
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
