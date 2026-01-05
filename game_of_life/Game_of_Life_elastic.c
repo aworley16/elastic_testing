@@ -500,9 +500,20 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
 	printf("%d -- comm_size %d \n", rank, size);
     printf("%d -- sending to %d tag %d\n", rank, next, 0);
 	printf("%d -- sending to %d  tag %d\n", rank, prev, 0); 
+	
+	MPI_Send(local+(N+2)*(rows), (N+2), MPI_CHAR, next, 0, comm);
+	MPI_Recv(local, (N+2), MPI_CHAR, prev, 0, comm, &status_prev);
+	
+	printf("%d --- message to next complete\n", rank);
+	
+	
+	MPI_Send(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm);
+	MPI_Recv(local+(N+2)*(rows+1), (N+2), MPI_CHAR, next, 0, comm, &status_next);
+	
+	printf("%d --- message to prev complete\n", rank);
+	/*
 	MPI_Isend(local+(N+2)*(rows), (N+2), MPI_CHAR, next, 0, comm, &send_next);
 	MPI_Isend(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm, &send_prev);
-		
 	
 	printf("%d -- waiting on %d chars from %d tag %d\n", rank, N+2, next,0);
 	printf("%d -- waiting on %d chars from %d  tag %d\n", rank, N+2, prev,0); 		
@@ -511,7 +522,7 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
 	
 	MPI_Recv(local+(N+2)*(rows+1), (N+2), MPI_CHAR, next, 0, comm, &status_next);
 	printf("%d -- after second recv\n", rank);
-	
+	*/
 	MPI_Barrier(comm);
 }
 
