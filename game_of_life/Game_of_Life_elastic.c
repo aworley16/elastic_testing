@@ -113,13 +113,15 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	MPI_Comm_rank(universe, &uni_rank);
 	if(uni_rank > phase_size){*color = 1;}
 
-	printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
-	fflush(stdout);
+	//printf("%d sees universe of size %d \n", old_uni_rank, uni_size);
+	//fflush(stdout);
 
 	//delete old phase_comm and create new phase_comm
 	//MPI_Comm_free(&phase_comm);
 	MPI_Comm_split(universe, *color, uni_rank, &phase_comm);
-	
+	printf("after %d comm_split \n", old_uni_rank);
+	fflush(stdout);
+
 	
 	return 0;
 }
