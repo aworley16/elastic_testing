@@ -245,6 +245,8 @@ int main(int argc, char *argv[])
 		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
 		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
+		printf("rank %d after comm setup \n", global_rank);
+		fflush(stdout);
 		
 		int phase_check;
 		MPI_Comm_size(phase_comm, &phase_check);
