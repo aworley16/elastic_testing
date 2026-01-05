@@ -1,7 +1,6 @@
 #define _DEFAULT_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include "graphics.h"
 #include <math.h>
 #include <sys/time.h>
 #include <mpi.h>
@@ -27,10 +26,11 @@ void square(int N);
 void floater(int N);
 void gosper_glider_gun(int N);
 void rand_grid(int N, int fillRatio);
-void drawGraphics(int N, char * boardState, float waitTime);
 void print_matrix(char* A, int n, int rows);
 
 void Halo(char* local, int N, int rows, int rank, MPI_Comm comm);
+
+char *boardState, *newBoardState;
 
 void print_grid(char* local, int N, int rows){
 	for(int i=0; i<rows; i++)
@@ -42,12 +42,7 @@ void print_grid(char* local, int N, int rows){
 	printf("\n");
 }
 
-const float Color = 0;
-const int windowWidth = 600, windowHeight = 600, W = 1, H = 1;
-char *boardState, *newBoardState;
-
-char* initalize_root_board(int N, char seed)
-{
+char* initalize_root_board(int N, char seed){
 	boardState = (char*) calloc((N+2) * (N+2), sizeof(char));
 	switch (seed)
     {	
@@ -80,60 +75,69 @@ char* initalize_root_board(int N, char seed)
 	return boardState;
 }
 
-int MPI_Comm_spawn(const char* command,
-                   char** arguments,
-                   int max_process_number,
-                   MPI_Info info,
-                   int root,
-                   MPI_Comm intracommunicator,
-                   MPI_Comm* intercommunicator,
-                   int* error_codes);
+//update universe, phase_comm, color, and makes sure head proc is known everywhere if it changed
+int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, MPI_Comm phase_comm, int* color){
+	int old_phase_size = -1;
+	int old_uni_rank = -1
+	int uni_size = -1;
+	int uni_rank = -1;
+	
+	MPI_Comm_size(phase_comm, &old_phase_size);
+	MPI_Comm_size(universe, &uni_size);
+	MPI_Comm_rank(universe, &old_uni_rank);
+	
+	//if phase is same size then just use pre-existing comms
+	if(phase_size == old_phase_size){return;}
+	
+	//if needed spawn additional processes expand universe	
+	if(phase_size > uni_size){
+		MPI_Comm bridge;
+		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, universe, &bridge, MPI_ERRCODES_IGNORE);
+		MPI_Intercomm_merge(bridge, 0, &new_uni);
+		
+		//make sure everyone knows who root is. should be 0, but being paranoid here.
+		MPI_Comm_rank(new_uni, &uni_rank);
+		if(*head_proc == old_uni_rank){*head_proc = uni_rank;}
+		MPI_Bcast(head_proc, 1, MPI_INT, head_proc, new_uni); //broadcast so everyone knows who root is. 
+		MPI_Bcast(phase, 1, MPI_INT, head_proc, new_uni);     //broadcast so that the newbies can skip ahead to the correct phase;
+	}
+ 	
+	//determine what processes will be active this phase.	
+	if(uni_rank > phase_size){*color = 1;}
 
-MPI_Comm expand(int expand_num, MPI_Comm everyone){
-	   
-	   MPI_Comm universe;
-	   MPI_Comm_spawn(gol.exe, MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &everyone, MPI_ERRCODES_IGNORE);
-	   MPI_Intercomm_merge(everyone, 0, &universe);
-	   return universe;
+	//delete old phase_comm and create new phase_comm
+	MPI_Comm_free(phase_comm);
+	MPI_Comm_split(new_uni, *color, uni_rank, phase_comm);
+	return;
 }
 
-
-int setup_phase(char** localw, char** local_neww, int N, int old_size, int new_size,  int global_rank, MPI_Comm* phase_comm, MPI_Comm* universe){
+//given a phase_comm, allocate space for local rows
+int setup_grids(char** localw, char** local_neww, int N, MPI_Comm phase_comm){
 	char* local = *localw;
 	char* local_new = *local_neww;
-	int color = 0;
+	
+	//assume comm_size = phase_size;
+	int size;
+	int rank;
+	MPI_Comm_size(phase_comm, &size);
+	MPI_Comm_rank(phase_comm, &rank);
+	
+	//determine the number of rows required. 
 	int rows = 0;
+	int remander = N%size;
+	rows = N/size;
+	if(rank < remainder){row++;}
+	int local_size = (N+2) * (rows+2) * sizeof(char);
 	
-	//spawn additional processes to match requirement
-	if(
-	{
-		universe = MPI_Comm expand(int expand_num, universe);
-	}
+	char* temp_ptr = (char *)realloc(local_size);
+	if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local); exit(EXIT_FAILURE); }
+	*localw = temp_ptr;
+		
+	temp_ptr = (char *)realloc(local_size);
+	if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local_new); exit(EXIT_FAILURE); }
+	*local_neww= temp_ptr;
 	
-	//label ranks to be used this phase, and make phase_comm;
-	if(global_rank < size){color = 1;}
-	MPI_Comm_split(universe, color, global_rank, phase_comm);
-	 
-	//calculate number of local  if participating in phase
-	if(color == 1){
-		rows = N/size;
-		//realloc board and new_board
-		char* temp_ptr = (char *)realloc(local, (N+2) * (rows+2) * sizeof(char));
-	    if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local); exit(EXIT_FAILURE); }
-		local = temp_ptr;
-		*localw = local;
-		
-		temp_ptr = (char *)realloc(local_new, (N+2) * (rows+2) * sizeof(char));
-	    if(temp_ptr==NULL){printf("ERROR WITH REALLOC\n"); free(local_new); exit(EXIT_FAILURE); }
-		local_new = temp_ptr;
-		*local_neww= local_new;
-		
-		//Scatter the data from rank 0;
-		MPI_Scatter(boardState, (N+2)*(rows+2), MPI_CHAR, local, (N+2)*(rows+2), MPI_CHAR, 0, *phase_comm);
-	}
-
-	//printf("rank %d local size %d at %p \n", global_rank, (N+2) * (rows+2), local);
-	return color;
+	return; 
 }
 
 int main(int argc, char *argv[])
@@ -145,10 +149,9 @@ int main(int argc, char *argv[])
         return -1;
     }
     
-	int N = 27720;                     // Evenly Divisible by 1-16, 32, 64, & 128
-    //char type_of_matrix = argv[2][0]; // The type of initial states.
-	char type_of_matrix = 's';          //
-    int nsteps = atoi(argv[1]);         // The number of iterations per phase
+	int N = 27720;               // Evenly Divisible by 1-16, 32, 64, & 128
+	char type_of_matrix = 's';  //
+    int nsteps = 1000;         // The number of iterations per phase
 	
 	int num_phases = 3;
 	int phases[] = {2,3,4,5,6,7,8};
@@ -162,6 +165,7 @@ int main(int argc, char *argv[])
     char *local = NULL;
 	char *local_new = NULL;
     double starttime, time;
+	
 	//timing variables
 	double setup_start = 0;
 	double setup_end = 0;
@@ -208,7 +212,7 @@ int main(int argc, char *argv[])
 		color = setup_phase(&local, &local_new, N, phase, phases[phase], global_rank, &phase_comm);
 		setup_end = MPI_Wtime();
 		
-		MPI_Comm_size(&phase_size, phase_comm)
+		MPI_Comm_size(phase_comm,&phase_size);
 		rows = N/phases_size;
 		if(color == 1){
 			//execute phase
@@ -410,22 +414,6 @@ void rand_grid(int N, int fillRatio)
             }
         }
     }
-}
-
-// The function to draw the graphics 
-void drawGraphics(int N,char * boardState, float waitTime)
-{
-    float oneDivN = 1 / (float)(N);
-    ClearScreen();
-    for (int i = 1; i < N + 2; i++)
-    {
-        for (int j = 1; j < N + 2; j++)
-        {
-            if (boardState[(N+2)*j+i] == 1) DrawRectangle((float)(i - 1) * oneDivN, (float)(j - 1) * oneDivN, W, H, oneDivN, oneDivN, Color);
-        }
-    }
-    Refresh();
-    usleep(waitTime);
 }
 
 // For printing the matrices in the terminal
