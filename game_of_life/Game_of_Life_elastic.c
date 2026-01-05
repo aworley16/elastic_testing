@@ -265,9 +265,14 @@ int main(int argc, char *argv[])
 			//execute phase
 			for (int i = 0; i < nsteps; i++)
 			{
+				printf("rank %d at calc  \n", global_rank);
+				fflush(stdout);
 				local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, rows);
 				local_calc_time += MPI_Wtime() - local_calc_start;
+				
+				printf("rank %d at Halo \n", global_rank);
+				fflush(stdout);
 				
 				local_halo_start = MPI_Wtime();
 				Halo(local, N, rows, global_rank, phase_comm);
@@ -276,7 +281,7 @@ int main(int argc, char *argv[])
 			
 			phase_time=MPI_Wtime()-phase_start;
 			
-			//printf("%d AFTER HALO \n", global_rank);
+			printf("%d AFTER HALO \n", global_rank);
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
