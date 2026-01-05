@@ -92,10 +92,10 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 			printf("sending %d to spawn\n", *phase);
 			MPI_Send(phase, 1, MPI_INT, 0, 1, bridge);
 		}
-		
-		MPI_Barrier(bridge);
-		
+	
 		MPI_Intercomm_merge(bridge, 0, &new_uni);
+		
+		
 		
 		//make sure everyone knows who root is. should be 0, but being paranoid here.
 		MPI_Comm_rank(new_uni, &uni_rank);
