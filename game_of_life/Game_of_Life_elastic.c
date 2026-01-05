@@ -306,7 +306,8 @@ int main(int argc, char *argv[])
 			MPI_Barrier(phase_comm);	
 		}
 		printf("--\n");
-		fflush(stdout);		
+		fflush(stdout);	
+		MPI_Barrier(phase_comm);		
 	}
 	MPI_Barrier(universe);	
 	endtime = MPI_Wtime() - starttime;
