@@ -6,21 +6,6 @@
 #include <mpi.h>
 #include<time.h>
 
-/*
-In Game Of Life, every cell on the grid is either alive or dead, the rules are:
-1. A new cell is born if it has exactly three neighbours
-2. A cell dies if it has more than three neighbours
-3. A cell dies if it has less than two neighbours
-4. For all others cases, the cells remain unchanged
-
-Game Of Life is deterministic as all future states depend on the initial state.
-*/
-
-/*
-When testing out parameters to run with graphics, mind that smaller grids will be much quicker to compute
-and it is therefore advisable to run with a small waitTime,  e.g. 0.5. 
-*/
-
 char *Step(char **local, char** local_new, int N, int rows);
 void square(int N);
 void floater(int N);
@@ -81,20 +66,31 @@ int setup_comms(int* head_proc, int phase_size, int* phase, MPI_Comm universe, M
 	int old_uni_rank = -1;
 	int uni_size = -1;
 	int uni_rank = -1;
-	
+
 	MPI_Comm_size(phase_comm, &old_phase_size);
 	MPI_Comm_size(universe, &uni_size);
 	MPI_Comm_rank(universe, &old_uni_rank);
 	MPI_Comm new_uni;
 	
+	
 	//if phase is same size then just use pre-existing comms
-	if(phase_size == old_phase_size){return -1;}
+	if(phase_size == old_phase_size){
+		printf("NO CHANGE \n"); 
+		*color= 1; 
+		return -1;
+	}
 	
 	//if needed spawn additional processes expand universe	
 	if(phase_size > uni_size){
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
-		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, universe, &bridge, MPI_ERRCODES_IGNORE);
+		
+		printf("%d at spawning\n", old_uni_rank);
+		
+		MPI_Comm_spawn("gol.exe", MPI_ARGV_NULL, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
+		
+		printf("%d after spawning\n", old_uni_rank);
+		
 		MPI_Intercomm_merge(bridge, 0, &new_uni);
 		
 		//make sure everyone knows who root is. should be 0, but being paranoid here.
@@ -144,99 +140,114 @@ int setup_grids(char** localw, char** local_neww, int N, MPI_Comm phase_comm){
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
-    {
-        printf("Wrong number of input arguments\n");
-        printf("To run, enter 'mpirun -np [number of processes] ./gol [steps in each phase]'\n");
-        return -1;
-    }
+	printf("NEW PROC!!! \n");
     
 	int N = 27720;               // Evenly Divisible by 1-16, 32, 64, & 128
-	char type_of_matrix = 's';  //
-    int nsteps = 1000;         // The number of iterations per phase
-	
-	int phase = 0; 
-	int num_phases = 1;
+	char type_of_matrix = 's';  // inital state
+    //int nsteps = atoi(argv[1]);          // The number of iterations per phase
+	int nsteps = 3;
+	int num_phases = 2;
 	int phases[] = {2,3,4,5,6,7,8};
-		
-	double waitTime = 0;
-    int  rows;
-    int size, rank;
+	int phase = 0; 
 	int phase_size;
+	int color = 0;             //color == 1 if process is participating in phase
+	
+    int  rows;
 	int global_rank;
-    int i, j;
-	int* head_proc;
-    *head_proc = 0;	
-    char *local = NULL;
+    int size, rank;
+	int head_proc = 0;   //check to see if root changes during comm merges 
+    
+	char *local = NULL; 
 	char *local_new = NULL;
-    double starttime, time;
 	
-	//timing variables
+	//local timing variables
+	double phase_start = 0;
+	double phase_time = 0; 
+	
 	double setup_start = 0;
-	double setup_end = 0;
 	double setup_time = 0;
-	double phase_end = 0;
-	
+
 	double local_halo_start= 0;
 	double local_halo_time = 0;
-	double total_halo_time = 0;
+
    
 	double local_calc_start = 0;
 	double local_calc_time  = 0;
-	double total_calc_time  = 0;
+	
+	//combined timing variables
+	double starttime, endtime;
+	double total_calc_time  = 0;	
+	double total_halo_time = 0;
 	double min_calc_time;
-    int color = 0; 
+    
 	
     /* Initialize MPI */
     MPI_Init(&argc, &argv);       
 	MPI_Request request;
     MPI_Status  status;
     
-	/* Global IDs */
-    MPI_Comm_size(MPI_COMM_WORLD, &size);     
-    MPI_Comm_rank(MPI_COMM_WORLD, &global_rank);    
-	MPI_Comm phase_comm;
 	MPI_Comm universe;
+	MPI_Comm phase_comm;
 	MPI_Comm parent;
+	MPI_Comm_dup(MPI_COMM_WORLD, &universe);
+	MPI_Comm_dup(MPI_COMM_WORLD, &phase_comm);
+	
+	/* Global IDs */
+    MPI_Comm_size(universe, &size);     
+    MPI_Comm_rank(universe, &global_rank);    
+	
 	//check if this is a spawned child processes
     MPI_Comm_get_parent(&parent);
 	
 	//if it is the original world then have root setup initial grid
     if(parent == MPI_COMM_NULL && global_rank==0){
 		boardState = initalize_root_board(N, type_of_matrix);
+		printf("ROOT process %d at loop \n", global_rank);
 	}
 	else if(parent != MPI_COMM_NULL) //else if spawned sync with parent and help recreate universal comm
 	{
-		MPI_Bcast(head_proc, 1, MPI_INT, *head_proc, universe); //broadcast so everyone knows who root is. 
-		MPI_Bcast(&phase, 1, MPI_INT, *head_proc, universe);     //broadcast so that the newbies can skip ahead 
-	}	
- 
-    
+		printf("Spawned process at BCAST \n");
+		MPI_Bcast(&head_proc, 1, MPI_INT, head_proc, universe); //broadcast so everyone knows who root is. 
+		MPI_Bcast(&nsteps, 1, MPI_INT, head_proc, universe); //broadcast so everyone knows who root is. 
+		MPI_Bcast(&phase, 1, MPI_INT, head_proc, universe);     //broadcast so that the newbies can skip ahead 
+	}else{	
+		printf("Other process %d at loop \n", global_rank);
+	}
+	MPI_Barrier(universe);	
     starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
 	{
+		phase_size = phases[phase];
+		phase_start=MPI_Wtime();
 		setup_start = MPI_Wtime();
-		setup_comms(head_proc, phase_size, &phase, universe, phase_comm, &color);
+		setup_comms(&head_proc, phase_size, &phase, universe, phase_comm, &color);
 		setup_grids(&local, &local_new, N, phase_comm);
-		setup_end = MPI_Wtime();
+		
+		setup_time = MPI_Wtime()-setup_start;
 		
 		MPI_Comm_size(phase_comm,&phase_size);
 		rows = N/phase_size;
+		
+		
 		if(color == 1){
 			//execute phase
-			for (i = 0; i < nsteps; i++)
+			for (int i = 0; i < nsteps; i++)
 			{
 				local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, rows);
 				local_calc_time += MPI_Wtime() - local_calc_start;
+				
+				printf("%d AT HALO \n", global_rank);
 				
 				local_halo_start = MPI_Wtime();
 				Halo(local, N, rows, global_rank, phase_comm);
 				local_halo_time += MPI_Wtime()- local_halo_start;				
 			}
 			
-			phase_end=MPI_Wtime();
+			phase_time=MPI_Wtime()-phase_start;
+			
+			printf("%d AFTER HALO \n", global_rank);
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
@@ -245,15 +256,15 @@ int main(int argc, char *argv[])
 			//log times 
 			if(global_rank==0){
 				//     id size  as  ac  mc halo, total
-				printf("%d, %d, %f, %f, %f, %f, %f \n", phase, phases[phase] ,setup_end-setup_start, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_end-setup_start);
+				printf("%d, %d, %f, %f, %f, %f, %f \n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time);
 			}
 		}
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-		MPI_Barrier(MPI_COMM_WORLD);
+		MPI_Barrier(universe);
 	}
-	time = MPI_Wtime() - starttime;
+	endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	//MPI_Reduce(&local_halo_time, &total_halo_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	
