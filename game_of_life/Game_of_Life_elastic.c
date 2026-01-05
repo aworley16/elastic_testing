@@ -297,7 +297,15 @@ int main(int argc, char *argv[])
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-		MPI_Barrier(universe);
+		for(int j=0; j<phase_size; j++)
+		{
+			if(global_rank == j){
+				printf("%d done with phase %d \n", global_rank, phase);
+				fflush(stdout);
+			}
+			MPI_Barrier(universe);	
+		}
+		printf("\n\n\n");		
 	}
 	endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
