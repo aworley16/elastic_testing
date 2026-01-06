@@ -87,14 +87,14 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		sprintf(gsize, "%d", N);
 		sprintf(p, "%d", phase);
 	    char *args[] = {gsize, p, NULL};
-		MPI_Comm_spawn("./gol.exe", args, expand_num, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &bridge, MPI_ERRCODES_IGNORE);
+		MPI_Comm_spawn("./gol.exe", args, expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
 		
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
-		printf("%d --- UNI SIZE\n", uni_rank, uni_size);
+		printf("%d --- UNI SIZE %d\n", uni_rank, uni_size);
 	}
 	
 	//if all processes will be used in phase, dupe universe and mark all;
