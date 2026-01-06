@@ -94,6 +94,7 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
+		printf("%d --- UNI SIZE\n", uni_rank, uni_size);
 	}
 	
 	//if all processes will be used in phase, dupe universe and mark all;
@@ -211,7 +212,8 @@ int main(int argc, char *argv[])
 		
 		//Update ID
 		MPI_Comm_size(universe, &uni_size);     
-		MPI_Comm_rank(universe, &global_rank);    
+		MPI_Comm_rank(universe, &global_rank);   
+		printf("SPAWNED process %d of %d\n", global_rank, uni_size); 
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
