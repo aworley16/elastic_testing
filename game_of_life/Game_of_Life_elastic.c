@@ -150,10 +150,10 @@ int main(int argc, char *argv[])
 {
 	//printf("NEW PROC!!! \n");
     
-	int N = 27720;               // Evenly Divisible by 1-16, 32, 64, & 128
+	int N = 2772;               // Evenly Divisible by 1-16, 32, 64, & 128
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
-	int nsteps = 1000;
+	int nsteps = 500;
 	int num_phases = 3;
 	int phases[] = {2,3,4,5,6,7,8};
 	int phase = 0; 
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 
 	for(; phase < num_phases; phase++)
 	{
-		//printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
+		printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
 		phase_size = phases[phase];
 		phase_start = MPI_Wtime();
 		
@@ -285,7 +285,7 @@ int main(int argc, char *argv[])
 		for(int j=0; j<phase_size; j++)
 		{
 			if(global_rank == j){
-				//printf("%d done with phase %d \n", global_rank, phase);
+				printf("%d done with phase %d \n", global_rank, phase);
 				
 			}
 			MPI_Barrier(phase_comm);	
