@@ -162,9 +162,8 @@ int main(int argc, char *argv[])
 	
     int  rows;
 	int global_rank;
-    int uni_size, rank;
-	int head_proc = 0;   //check to see if root changes during comm merges 
-    
+    int uni_size;
+
 	char *local = NULL; 
 	char *local_new = NULL;
 	
@@ -183,16 +182,16 @@ int main(int argc, char *argv[])
 	double local_calc_time  = 0;
 	
 	//combined timing variables
-	double starttime, endtime;
+	double starttime; // endtime;
 	double total_calc_time  = 0;	
-	double total_halo_time = 0;
+	//double total_halo_time = 0;
 	double min_calc_time;
     
 	
     /* Initialize MPI */
     MPI_Init(&argc, &argv);       
-	MPI_Request request;
-    MPI_Status  status;
+	//MPI_Request request;
+    //MPI_Status  status;
     
 	MPI_Comm universe = MPI_COMM_NULL;
 	MPI_Comm phase_comm = MPI_COMM_NULL;
@@ -229,23 +228,23 @@ int main(int argc, char *argv[])
 
 	for(; phase < num_phases; phase++)
 	{
-		//printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
+		color = 0; 
 		phase_size = phases[phase];
 		phase_start = MPI_Wtime();
 		
 		//spawn processes and create phase_comm for phase;
 		int change = setup_comms(N, phase, phases, &universe, &phase_comm, &color);
-		//printf("rank %d comms set for phase %d \n", global_rank, phase); fflush(stdout);
+		
 		//reallocate size for local grids
 		setup_grids(&local, &local_new, N, phase_comm, change);
-		//printf("rank %d grids set for phase %d \n", global_rank, phase); fflush(stdout);
+		
 		setup_time = MPI_Wtime()-phase_start;
 		
 		//sanity check
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
 		
-		if(phase_size != check && color == 0){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d \n", phase_size, check);}
+		if(phase_size != check && color == 0){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d -- %d \n", phase_size, check, color);}
 		
 		rows = N/phase_size;
 		
@@ -293,12 +292,12 @@ int main(int argc, char *argv[])
 		MPI_Barrier(phase_comm);	 */	
 	}
 	MPI_Barrier(universe);	
-	endtime = MPI_Wtime() - starttime;
+	//endtime = MPI_Wtime() - starttime;
 	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	//MPI_Reduce(&local_halo_time, &total_halo_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	
 	//Have root print the results
-		if(global_rank == 0 ){
+		//if(global_rank == 0 ){
 		//printf("Exeution time: %f\n", endtime);
     } 
     MPI_Finalize();
