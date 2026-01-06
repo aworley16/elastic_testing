@@ -94,7 +94,7 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
-		printf("%d --- UNI SIZE %d\n", uni_rank, uni_size);
+		//printf("%d --- UNI SIZE %d\n", uni_rank, uni_size);
 	}
 	
 	//if all processes will be used in phase, dupe universe and mark all;
@@ -499,27 +499,12 @@ void Halo(char* local, int N, int rows, int rank, MPI_Comm comm)
 	if(prev > -1){printf("%d --- waiting on message from %d \n", rank, prev);}
 	MPI_Recv(local, (N+2), MPI_CHAR, prev, 0, comm, &status_prev);
 	
-	printf("%d --- message to next(%d) complete\n", rank, next);
+	//printf("%d --- message to next(%d) complete\n", rank, next);
 	
 	if(prev > -1){printf("%d --- sending message to %d \n", rank, prev);}
 	MPI_Ssend(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm);
 	
 	if(prev > -1){printf("%d --- waiting on message from %d \n", rank, next);}
 	MPI_Recv(local+(N+2)*(rows+1), (N+2), MPI_CHAR, next, 0, comm, &status_next);
-	
-	printf("%d --- message to prev(%d) complete\n", rank, prev);
-	/*
-	MPI_Isend(local+(N+2)*(rows), (N+2), MPI_CHAR, next, 0, comm, &send_next);
-	MPI_Isend(local+(N+2), (N+2), MPI_CHAR, prev, 0, comm, &send_prev);
-	
-	printf("%d -- waiting on %d chars from %d tag %d\n", rank, N+2, next,0);
-	printf("%d -- waiting on %d chars from %d  tag %d\n", rank, N+2, prev,0); 		
-	MPI_Recv(local, (N+2), MPI_CHAR, prev, 0, comm, &status_prev);
-	printf("%d -- after first recv\n", rank);
-	
-	MPI_Recv(local+(N+2)*(rows+1), (N+2), MPI_CHAR, next, 0, comm, &status_next);
-	printf("%d -- after second recv\n", rank);
-	*/
-	MPI_Barrier(comm);
 }
 
