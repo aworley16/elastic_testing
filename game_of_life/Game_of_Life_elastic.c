@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 {
 	//printf("NEW PROC!!! \n");
     
-	int N = 2772;               // Evenly Divisible by 1-16, 32, 64, & 128
+	int N = 27720;               // Evenly Divisible by 1-16, 32, 64, & 128
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 500;
