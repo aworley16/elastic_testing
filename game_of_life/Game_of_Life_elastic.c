@@ -244,7 +244,7 @@ int main(int argc, char *argv[])
 		//sanity check
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
-		if(phase_size != check){printf("ERROR PHASE COMM MISMATCH!!!!/n");}
+		if(phase_size != check){printf("ERROR PHASE COMM MISMATCH!!!!  %d  -- %d \n", phase_size, check);}
 		
 		rows = N/phase_size;
 		
@@ -276,7 +276,7 @@ int main(int argc, char *argv[])
 			//log times 
 			if(global_rank==0){
 				//     id size  as  ac  mc halo, total
-				printf("%d, %d, %f, %f, %f, %f, %f \n\n\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time); fflush(stdout);
+				printf("%d, %d, %f, %f, %f, %f, %f\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time); fflush(stdout);
 			}
 		}
 		//reset local variables --- TODO remove debug barrier
