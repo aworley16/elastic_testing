@@ -94,9 +94,9 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
-		//printf("%d --- UNI SIZE %d\n", uni_rank, uni_size);
+		
 	}
-	
+	printf("CHECK --- rank %d  size %d phase_size %d \n", uni_rank, uni_size, phase_size);
 	//if all processes will be used in phase, dupe universe and mark all;
 	if(phase_size == uni_size){
 		MPI_Comm_dup(*universe, phase_comm);
@@ -244,7 +244,7 @@ int main(int argc, char *argv[])
 		//sanity check
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
-		if(phase_size != check){printf("ERROR PHASE COMM MISMATCH!!!!  %d  -- %d \n", phase_size, check);}
+		if(phase_size != check){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d \n", phase_size, check);}
 		
 		rows = N/phase_size;
 		
