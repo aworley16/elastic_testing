@@ -264,10 +264,11 @@ int main(int argc, char *argv[])
 
 			}
 			
-			phase_time=MPI_Wtime()-phase_start;
-			
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
+			
+			phase_time=MPI_Wtime()-phase_start;
+			
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
             MPI_Reduce(&local_calc_time, &min_calc_time, 1, MPI_DOUBLE, MPI_MIN, 0, phase_comm); 
 			
@@ -280,16 +281,6 @@ int main(int argc, char *argv[])
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-/* 		for(int j=0; j<phase_size; j++)
-		{
-			if(global_rank == j){
-				printf("%d done with phase %d \n", global_rank, phase);
-				
-			}
-			MPI_Barrier(phase_comm);	
-		}
-		//printf("-- \n");	
-		MPI_Barrier(phase_comm);	 */	
 	}
 	MPI_Barrier(universe);	
 	//endtime = MPI_Wtime() - starttime;
