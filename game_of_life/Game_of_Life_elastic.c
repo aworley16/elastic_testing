@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
 	double phase_start = 0;
 	double phase_time = 0; 
 	
-	double setup_start = 0;
+	//double setup_start = 0;
 	double setup_time = 0;
 
 	double local_halo_start= 0;
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 	double local_calc_time  = 0;
 	
 	//combined timing variables
-	double starttime; // endtime;
+	//double starttime; // endtime;
 	double total_calc_time  = 0;	
 	//double total_halo_time = 0;
 	double min_calc_time;
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
 		if(global_rank==0){boardState = initalize_root_board(N, type_of_matrix);}
 	}
  
-    starttime = MPI_Wtime();	
+    //starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
 	{
@@ -299,7 +299,7 @@ int main(int argc, char *argv[])
 	//Have root print the results
 		//if(global_rank == 0 ){
 		//printf("Exeution time: %f\n", endtime);
-    } 
+    
     MPI_Finalize();
 
     return 0;
