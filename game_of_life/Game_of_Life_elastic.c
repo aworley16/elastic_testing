@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 
 	for(; phase < num_phases; phase++)
 	{
-		printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
+		//printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
 		phase_size = phases[phase];
 		phase_start = MPI_Wtime();
 		
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
 		//reset local variables --- TODO remove debug barrier
 		local_calc_time =0;
 		local_halo_time =0;
-		for(int j=0; j<phase_size; j++)
+/* 		for(int j=0; j<phase_size; j++)
 		{
 			if(global_rank == j){
 				printf("%d done with phase %d \n", global_rank, phase);
@@ -290,9 +290,8 @@ int main(int argc, char *argv[])
 			}
 			MPI_Barrier(phase_comm);	
 		}
-		//printf("-- \n");
-		fflush(stdout);	
-		MPI_Barrier(phase_comm);		
+		//printf("-- \n");	
+		MPI_Barrier(phase_comm);	 */	
 	}
 	MPI_Barrier(universe);	
 	endtime = MPI_Wtime() - starttime;
