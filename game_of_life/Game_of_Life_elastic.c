@@ -213,7 +213,7 @@ int main(int argc, char *argv[])
 		//Update ID
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
-		printf("SPAWNED process %d of %d\n", global_rank, uni_size); 
+		//printf("SPAWNED process %d of %d\n", global_rank, uni_size); 
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
@@ -229,16 +229,16 @@ int main(int argc, char *argv[])
 
 	for(; phase < num_phases; phase++)
 	{
-		printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
+		//printf("rank %d starting phase %d \n", global_rank, phase); fflush(stdout);
 		phase_size = phases[phase];
 		phase_start = MPI_Wtime();
 		
 		//spawn processes and create phase_comm for phase;
 		int change = setup_comms(N, phase, phases, &universe, &phase_comm, &color);
-		printf("rank %d comms set for phase %d \n", global_rank, phase); fflush(stdout);
+		//printf("rank %d comms set for phase %d \n", global_rank, phase); fflush(stdout);
 		//reallocate size for local grids
 		setup_grids(&local, &local_new, N, phase_comm, change);
-		printf("rank %d grids set for phase %d \n", global_rank, phase); fflush(stdout);
+		//printf("rank %d grids set for phase %d \n", global_rank, phase); fflush(stdout);
 		setup_time = MPI_Wtime()-phase_start;
 		
 		//sanity check
@@ -255,26 +255,18 @@ int main(int argc, char *argv[])
 			for (int i = 0; i < nsteps; i++)
 			{
 				//printf("rank %d at calc  \n", global_rank);
-				fflush(stdout);
 				local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, rows);
 				local_calc_time += MPI_Wtime() - local_calc_start;
-				
-				printf("rank %d at Halo \n", global_rank);
-				fflush(stdout);
+			
 				
 				local_halo_start = MPI_Wtime();
 				Halo(local, N, rows, global_rank, phase_comm);
 				local_halo_time += MPI_Wtime()- local_halo_start;	
 
-				printf("rank %d after Halo \n", global_rank);
-				fflush(stdout);
 			}
 			
 			phase_time=MPI_Wtime()-phase_start;
-			
-			printf("%d AFTER HALO \n", global_rank);
-			fflush(stdout);
 			
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
@@ -284,7 +276,7 @@ int main(int argc, char *argv[])
 			//log times 
 			if(global_rank==0){
 				//     id size  as  ac  mc halo, total
-				printf("%d, %d, %f, %f, %f, %f, %f \n\n\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time);
+				printf("%d, %d, %f, %f, %f, %f, %f \n\n\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time); fflush(stdout);
 			}
 		}
 		//reset local variables --- TODO remove debug barrier
@@ -293,12 +285,12 @@ int main(int argc, char *argv[])
 		for(int j=0; j<phase_size; j++)
 		{
 			if(global_rank == j){
-				printf("%d done with phase %d \n", global_rank, phase);
-				fflush(stdout);
+				//printf("%d done with phase %d \n", global_rank, phase);
+				
 			}
 			MPI_Barrier(phase_comm);	
 		}
-		printf("-- \n");
+		//printf("-- \n");
 		fflush(stdout);	
 		MPI_Barrier(phase_comm);		
 	}
@@ -309,7 +301,7 @@ int main(int argc, char *argv[])
 	
 	//Have root print the results
 		if(global_rank == 0 ){
-		printf("Exeution time: %f\n", endtime);
+		//printf("Exeution time: %f\n", endtime);
     } 
     MPI_Finalize();
 
