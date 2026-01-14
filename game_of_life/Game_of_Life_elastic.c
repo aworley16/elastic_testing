@@ -6,6 +6,27 @@
 #include <mpi.h>
 #include<time.h>
 
+struct phase_data{
+	int phase_size;
+	int grid_size;
+	double setup_time;
+	double calc_time;
+	double halo_time;
+	double phase_time;
+};
+
+/* void print_phase_data(int original, struct phase_data* data_all, in* phases, int runtime){
+	
+	for(
+	struct phase_data* = &data_all[i];
+	
+	
+	
+	
+} */
+
+
+
 char *Step(char **local, char** local_new, int N, int rows);
 void square(int N);
 void floater(int N);
@@ -150,15 +171,18 @@ int main(int argc, char *argv[])
 {
 	//printf("NEW PROC!!! \n");
     
-	int N = 2772;               // Evenly Divisible by 1-16, 32, 64, & 128
+	//int N = 277200;               // Evenly Divisible by 1-16, 32, 64, & 128
+	int N = 32000;
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 500;
 	int num_phases = 3;
-	int phases[] = {2,3,4,5,6,7,8};
+	int phases[] = {2,4,8,16,32};
 	int phase = 0; 
 	int phase_size;
-	int color = 0;             //color == 1 if process is participating in phase
+	int color = 0;             //color == 1 if process is participating in 
+	
+	struct phase_data data[num_phases];
 	
     int  rows;
 	int global_rank;
@@ -182,7 +206,7 @@ int main(int argc, char *argv[])
 	double local_calc_time  = 0;
 	
 	//combined timing variables
-	//double starttime; // endtime;
+	double starttime, endtime;
 	double total_calc_time  = 0;	
 	//double total_halo_time = 0;
 	double min_calc_time;
@@ -196,7 +220,8 @@ int main(int argc, char *argv[])
 	MPI_Comm universe = MPI_COMM_NULL;
 	MPI_Comm phase_comm = MPI_COMM_NULL;
 	MPI_Comm parent;
-	
+	int original = 0;
+	int previous = 0; 
 	//check if this is a spawned child processes
     MPI_Comm_get_parent(&parent);
 	
@@ -219,12 +244,12 @@ int main(int argc, char *argv[])
 		MPI_Comm_dup(MPI_COMM_WORLD, &universe);
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);    
-		
+		original = uni_size; 
 		//if original root setup initial board state 
 		if(global_rank==0){boardState = initalize_root_board(N, type_of_matrix);}
 	}
  
-    //starttime = MPI_Wtime();	
+    starttime = MPI_Wtime();	
 
 	for(; phase < num_phases; phase++)
 	{
@@ -271,26 +296,37 @@ int main(int argc, char *argv[])
 			
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
             MPI_Reduce(&local_calc_time, &min_calc_time, 1, MPI_DOUBLE, MPI_MIN, 0, phase_comm); 
+			MPI_Reduce(&local_halo_time, &local_halo_time, 1, MPI_DOUBLE, MPI_MAX, 0, phase_comm); 
 			
-			//log times 
-			if(global_rank==0){
-				//     id size  as  ac  mc halo, total
-				printf("%d, %d, %f, %f, %f, %f, %f\n", phase, phases[phase] ,setup_time, total_calc_time/phases[phase], min_calc_time, local_halo_time/phases[phase], phase_time); fflush(stdout);
-			}
+			if(global_rank == 0){//print_phase_data(data, phases, endtime-starttime);}
+				if(phase == 0){previous = original;}
+				printf("%d, %d, %d, %f, %f, %f, %f\n", 
+				original, previous, phase_size, setup_time, local_calc_time, local_halo_time, phase_time);
+				previous = phase_size;
+			}	
 		}
-		//reset local variables --- TODO remove debug barrier
+			
+/* 			//log times 
+			if(global_rank==0){
+				data[phase].phase_size = phases[phase];
+				data[phase].grid_size  = N;
+				data[phase].setup_time = setup_time;
+				data[phase].calc_time  = total_calc_time/phases[phase];
+				data[phase].halo_time  = local_halo_time/phases[phase];
+				data[phase].phase_time = phase_time;
+			} */
+		//}
+		//reset local variables
 		local_calc_time =0;
 		local_halo_time =0;
-	}
+	}	
 	MPI_Barrier(universe);	
-	//endtime = MPI_Wtime() - starttime;
-	//MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-	//MPI_Reduce(&local_halo_time, &total_halo_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-	
-	//Have root print the results
-		//if(global_rank == 0 ){
-		//printf("Exeution time: %f\n", endtime);
     
+	endtime = MPI_Wtime();
+/* 	if(global_rank == 0){//print_phase_data(data, phases, endtime-starttime);}
+		printf("%d, %d, %d, %d, %d, %d", original, data.phase_size, data.setup_time, data.calc_time, data.halo_time, data.phase_time);
+	
+	} */
     MPI_Finalize();
 
     return 0;
