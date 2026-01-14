@@ -131,8 +131,8 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		if(uni_rank < phase_size){*color = 1;}
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 		int test_size = 0;
-		MPI_Comm_size(phase_comm, &test_size);
-		printf(" rank %d -- color %d -- size of phase_comm %d \n", uni_rank, color, test_size);
+		MPI_Comm_size(*phase_comm, &test_size);
+		printf(" rank %d -- color %d -- size of phase_comm %d \n", uni_rank, *color, test_size);
 	
 	}
 	
@@ -271,6 +271,7 @@ int main(int argc, char *argv[])
 		
 		setup_time = MPI_Wtime()-phase_start;
 		
+		MPI_Barrier(universe);
 		//sanity check
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
