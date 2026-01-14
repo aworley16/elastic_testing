@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 	int num_phases = 6;
 	int phases[] = {1,2,4,8,16,32};
 	int phase = 0; 
-	if(argc == 3) {phase = atoi(argv[2]);printf("skipping to phase %d", atoi(argv[2]);}
+	if(argc == 3) {phase = atoi(argv[2]);printf("skipping to phase %d", atoi(argv[2]));}
 	int phase_size;
 	int color = 0;             //color == 1 if process is participating in 
 	
