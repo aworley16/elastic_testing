@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 50;
-	int num_phases = 6;
-	int phases[] = {1, 2,4,8,16,32};
+	int num_phases = 8;
+	int phases[] = {1,2,3,4,5,6,7,8};
 	int phase = 0; 
 	int phase_size;
 	int color = 0;             //color == 1 if process is participating in 
@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
 		
-		if(phase_size != check && color == 1){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d -- %d \n", phase_size, check, color);}
+		if(phase_size != check && color == 1){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d -- %d \n", phase_size, check, color); MPI_Abort();}
 		
 		rows = N/phase_size;
 		
