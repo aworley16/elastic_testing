@@ -172,10 +172,10 @@ int main(int argc, char *argv[])
 	//printf("NEW PROC!!! \n");
     
 	//int N = 277200;               // Evenly Divisible by 1-16, 32, 64, & 128
-	int N = 32000;
+	int N = 3200;
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
-	int nsteps = 5;
+	int nsteps = 50;
 	int num_phases = 3;
 	int phases[] = {2,4,8,16,32};
 	int phase = 0; 
@@ -275,7 +275,7 @@ int main(int argc, char *argv[])
 		
 		if(color == 1){
 			//execute phase
-			printf("rank %d at loop of phase %d \n", global_rank, phase);
+			//printf("rank %d at loop of phase %d \n", global_rank, phase);
 			for (int i = 0; i < nsteps; i++)
 			{
 			    //printf("rank %d at calc  \n", global_rank);
@@ -289,7 +289,7 @@ int main(int argc, char *argv[])
 				local_halo_time += MPI_Wtime()- local_halo_start;	
 
 			}
-			printf("rank %d at gather of phase %d \n", global_rank, phase);
+			//printf("rank %d at gather of phase %d \n", global_rank, phase);
 			//Gather data back to main board	
 			MPI_Gather(local+(N+2), (N+2)*(rows), MPI_CHAR, boardState+(N+2), (N+2)*(rows), MPI_CHAR, 0, phase_comm);
 			
