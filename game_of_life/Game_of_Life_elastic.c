@@ -99,6 +99,7 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	if(*phase_comm != MPI_COMM_NULL){MPI_Comm_free(phase_comm);} 
 	*color = 0; 
 	
+	printf("rank %d after color reset\n" uni_rank); 
 	//if additional processes needed, expand universe	
 	if(phase_size > uni_size){
 		//calculate and spawn processes as needed.
@@ -268,6 +269,8 @@ int main(int argc, char *argv[])
 		int change = setup_comms(N, phase, phases, &universe, &phase_comm, &color);
 		
 		//reallocate size for local grids
+		printf("rank %d at setup of phase %d\n", global_rank, phase); 
+		fflush(stdout);
 		setup_grids(&local, &local_new, N, phase_comm, change);
 		
 		setup_time = MPI_Wtime()-phase_start;
