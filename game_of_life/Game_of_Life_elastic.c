@@ -275,9 +275,10 @@ int main(int argc, char *argv[])
 		
 		if(color == 1){
 			//execute phase
+			printf("rank %d at loop of phase \n", global_rank, phase);
 			for (int i = 0; i < nsteps; i++)
 			{
-				//printf("rank %d at calc  \n", global_rank);
+			    //printf("rank %d at calc  \n", global_rank);
 				local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, rows);
 				local_calc_time += MPI_Wtime() - local_calc_start;
