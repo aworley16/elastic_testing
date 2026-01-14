@@ -186,14 +186,14 @@ int main(int argc, char *argv[])
 	//printf("NEW PROC!!! \n");
     
 	//int N = 277200;               // Evenly Divisible by 1-16, 32, 64, & 128
-	int N = 32000;
+	int N = 3200;
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 50;
 	int num_phases = 6;
 	int phases[] = {1,2,4,8,16,32};
 	int phase = 0; 
-	if(argc == 2) {phase = atoi(argv[2]);}
+	if(argc == 2) {phase = atoi(argv[2]);printf("skipping to phase %d", atoi(argv[2]);}
 	int phase_size;
 	int color = 0;             //color == 1 if process is participating in 
 	
