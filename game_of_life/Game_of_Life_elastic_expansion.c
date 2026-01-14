@@ -338,6 +338,7 @@ int main(int argc, char *argv[])
 		//reset local variables
 		local_calc_time =0;
 		local_halo_time =0;
+		break; //break after one phase for these tests. 
 	}	
  
 	//endtime = MPI_Wtime();
