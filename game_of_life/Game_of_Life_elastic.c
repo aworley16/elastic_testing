@@ -131,12 +131,15 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	//if only some processes will be used split phase_comm from universe
 	if(phase_size < uni_size){
 		if(uni_rank < phase_size){*color = 1;}
+		printf("rank %d at split -- color %d \n", uni_rank, *color);
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
+		printf("rank %d after split\n", uni_rank);
+		MPI_Barrier(*universe);
 		int test_size = 0;
 		MPI_Comm_size(*phase_comm, &test_size);
-		printf(" rank %d -- color %d -- size of phase_comm %d \n", uni_rank, *color, test_size);
+		printf(" rank %d -- color %d -- phase_comm_size %d \n", uni_rank, *color, test_size);
 	}
-	MPI_Barrier(*universe);
+	
 	printf("SETUP DONE\n");
 	return 0;
 }
