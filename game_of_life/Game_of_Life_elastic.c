@@ -275,7 +275,7 @@ int main(int argc, char *argv[])
 		
 		if(color == 1){
 			//execute phase
-			printf("rank %d at loop of phase \n", global_rank, phase);
+			printf("rank %d at loop of phase %d \n", global_rank, phase);
 			for (int i = 0; i < nsteps; i++)
 			{
 			    //printf("rank %d at calc  \n", global_rank);
