@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 50;
-	int num_phases = 3;
-	int phases[] = {2,4,8,16,32};
+	int num_phases = 6;
+	int phases[] = {1, 2,4,8,16,32};
 	int phase = 0; 
 	int phase_size;
 	int color = 0;             //color == 1 if process is participating in 
