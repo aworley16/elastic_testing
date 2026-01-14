@@ -144,8 +144,6 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		MPI_Comm_size(*phase_comm, &test_size);
 		printf(" rank %d -- color %d -- phase_comm_size %d \n", uni_rank, *color, test_size);
 	}
-	
-	printf("SETUP DONE\n");
 	return 0;
 }
 
@@ -188,7 +186,7 @@ int main(int argc, char *argv[])
 	//printf("NEW PROC!!! \n");
     
 	//int N = 277200;               // Evenly Divisible by 1-16, 32, 64, & 128
-	int N = 3200;
+	int N = 32000;
 	char type_of_matrix = 's';  // inital state
     //int nsteps = atoi(argv[1]);          // The number of iterations per phase
 	int nsteps = 50;
@@ -340,9 +338,8 @@ int main(int argc, char *argv[])
 		local_calc_time =0;
 		local_halo_time =0;
 	}	
-	MPI_Barrier(universe);	
-    
-	endtime = MPI_Wtime();
+ 
+	//endtime = MPI_Wtime();
 /* 	if(global_rank == 0){//print_phase_data(data, phases, endtime-starttime);}
 		printf("%d, %d, %d, %d, %d, %d", original, data.phase_size, data.setup_time, data.calc_time, data.halo_time, data.phase_time);
 	
