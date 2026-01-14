@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
 		int check = -1;
 		MPI_Comm_size(phase_comm,&check);
 		
-		if(phase_size != check && color == 1){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d -- %d \n", phase_size, check, color); MPI_Abort();}
+		if(phase_size != check && color == 1){printf("ERROR PHASE COMM MISMATCH!!!!  %d -- %d -- %d \n", phase_size, check, color); MPI_Abort(universe,1);}
 		
 		rows = N/phase_size;
 		
