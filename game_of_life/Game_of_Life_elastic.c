@@ -89,7 +89,9 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	int phase_size = phase_sizes[phase];
 	
 	//If phase_comm exists and is same size as previous then just use previous setup
-	if(*phase_comm != MPI_COMM_NULL && phase>0 && phase_size== phase_sizes[phase-1]){return 1;}
+	if(*phase_comm != MPI_COMM_NULL && phase>0 && phase_size== phase_sizes[phase-1]){
+		printf("NO RESIZE\n");
+		return 1;}
 	
 	//if not figure out what needs to happen & clear room for new phase_comm
 	MPI_Comm_size(*universe, &uni_size);
@@ -128,6 +130,10 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	if(phase_size < uni_size){
 		if(uni_rank < phase_size){*color = 1;}
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
+		int test_size = 0;
+		MPI_Comm_size(phase_comm, &test_size(;
+		printf(" rank %d -- color %d -- size of phase_comm %d \n", uni_rank, color, test_size);
+	
 	}
 	
 	return 0;
