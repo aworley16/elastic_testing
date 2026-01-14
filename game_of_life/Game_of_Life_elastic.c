@@ -132,6 +132,10 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	if(phase_size < uni_size){
 		if(uni_rank < phase_size){*color = 1;}
 		printf("rank %d at split -- color %d \n", uni_rank, *color);
+		fflush(stdout);
+		MPI_Barrier(*universe);
+		printf("\n");
+		MPI_Barrier(*universe);
 		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
 		printf("rank %d after split\n", uni_rank);
 		fflush(stdout);
