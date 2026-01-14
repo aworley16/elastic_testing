@@ -114,9 +114,10 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
-		
+		int old_rank = uni_rank;
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
+		//printf("new uni of size %d -- new rank %d, old_rank %d\n", uni_size, uni_rank, old_rank);
 		
 	}
 	//printf("CHECK --- rank %d  size %d phase_size %d \n", uni_rank, uni_size, phase_size);
@@ -133,9 +134,9 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 		int test_size = 0;
 		MPI_Comm_size(*phase_comm, &test_size);
 		printf(" rank %d -- color %d -- size of phase_comm %d \n", uni_rank, *color, test_size);
-	
 	}
-	
+	MPI_Barrier(*universe);
+	printf("SETUP DONE\n");
 	return 0;
 }
 
