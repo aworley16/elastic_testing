@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 	//combined timing variables
 	double starttime, endtime;
 	double total_calc_time  = 0;	
-	//double total_halo_time = 0;
+	double max_halo_time = 0;
 	double min_calc_time;
     
 	
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
 			
 			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
             MPI_Reduce(&local_calc_time, &min_calc_time, 1, MPI_DOUBLE, MPI_MIN, 0, phase_comm); 
-			MPI_Reduce(&local_halo_time, &local_halo_time, 1, MPI_DOUBLE, MPI_MAX, 0, phase_comm); 
+			MPI_Reduce(&local_halo_time, &max_halo_time, 1, MPI_DOUBLE, MPI_MAX, 0, phase_comm); 
 			
 			if(global_rank == 0){//print_phase_data(data, phases, endtime-starttime);}
 				if(phase == 0){previous = original;}
