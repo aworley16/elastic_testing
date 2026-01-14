@@ -99,7 +99,7 @@ int setup_comms(int N, int phase, int* phase_sizes, MPI_Comm* universe, MPI_Comm
 	if(*phase_comm != MPI_COMM_NULL){MPI_Comm_free(phase_comm);} 
 	*color = 0; 
 	
-	printf("rank %d after color reset\n" uni_rank); 
+	printf("rank %d after color reset -- phase_size %d -- uni_size %d\n", uni_rank, phase_size, uni_size); 
 	//if additional processes needed, expand universe	
 	if(phase_size > uni_size){
 		//calculate and spawn processes as needed.
