@@ -23,17 +23,17 @@ int main(){
 	MPI_Comm_get_parent(&parent);
 	if(parent != MPI_COMM_NULL) 
 	{ 
-		MPI_Intercomm_merge(parent, 0, &bridge); //merge with parent comm (current universe)
-		MPI_Comm_size(bridge, &size);     
-		MPI_Comm_rank(bridge, &rank);   
+		//MPI_Intercomm_merge(parent, 0, &bridge); //merge with parent comm (current universe)
+		//MPI_Comm_size(bridge, &size);     
+		//MPI_Comm_rank(bridge, &rank);   
 		printf("WORLD SPAWNED process %d of %d\n", rank, size); 
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
 		MPI_Comm_spawn("./a.out", MPI_ARGV_NULL, 1, MPI_INFO_NULL, 0, MPI_COMM_WORLD, &child, MPI_ERRCODES_IGNORE);
-		MPI_Intercomm_merge(child, 0, &bridge); //create new universe
-		MPI_Comm_size(bridge, &size);     
-		MPI_Comm_rank(bridge, &rank);   
+		//MPI_Intercomm_merge(child, 0, &bridge); //create new universe
+		//MPI_Comm_size(bridge, &size);     
+		//MPI_Comm_rank(bridge, &rank);   
 		printf("WORLD original process %d of %d\n", rank, size); 
 	}
 	
