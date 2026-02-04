@@ -61,7 +61,7 @@ int* initalize_root_board(int N, char seed){
 
 int read_file(char* filename, int x, int y){
 	FILE* ptr = fopen(filename, "r");
-	if(ptr==NULL){printf("FILE NOT FOUND\n");exit(1);}
+	if(ptr==NULL){return -1;}
 	int num_cells = (x+2) * (y+2);
 
 	char line[(x+2)*2];
@@ -80,6 +80,7 @@ int read_file(char* filename, int x, int y){
 		k++;
     }
 	fclose(ptr);
+	return 0; 
 }
 
 int write_file(char* filename, int x, int y){
@@ -295,15 +296,15 @@ int main(int argc, char *argv[])
 		
 		if(global_rank==0){
 			boardState = (int*) calloc((N+2) * (N+2), sizeof(int));
-			if(argc <= 3 || filename == NULL){
-				//printf("AT INIT\n");
-				boardState = initalize_root_board(N, type_of_matrix);
-			}else{
+			int read = -1;
+			if(argc >= 3 && filename != NULL){
 				read_start = MPI_Wtime();
-				read_file(filename, N, N);
+				read = read_file(filename, N, N);
 				read_end = MPI_Wtime();
 			}
-			//print_matrix(boardState, N, N);
+			if(read < 0){
+				boardState = initalize_root_board(N, type_of_matrix);	
+			}
 		}
 	}	
 	previous = uni_size;
