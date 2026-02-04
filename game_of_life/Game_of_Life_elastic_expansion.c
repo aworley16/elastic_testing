@@ -15,18 +15,6 @@ struct phase_data{
 	double phase_time;
 };
 
-/* void print_phase_data(int original, struct phase_data* data_all, in* phases, int runtime){
-	
-	for(
-	struct phase_data* = &data_all[i];
-	
-	
-	
-	
-} */
-
-
-
 char *Step(char **local, char** local_new, int N, int rows);
 void square(int N);
 void floater(int N);
