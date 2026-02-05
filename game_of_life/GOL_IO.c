@@ -210,15 +210,23 @@ int main(int argc, char *argv[])
 {
     
 	MPI_Init(&argc, &argv);	
+	
 	int start_time = MPI_Wtime();
 	char type_of_matrix = 's';  // inital state
 
 	int phase = 0;
 	int num_phases = 1; 
-	if(argc >= 5){num_phases = atoi(argv[4]);}
-	int* phase_sizes = malloc(sizeof(int)*num_phases);
-	for(int i=0; i<num_phases; i++){phase_sizes[i]=atoi(argv[5+i]);} 
-	
+	int* phase_sizes;
+	if(argc >= 5){
+		num_phases = atoi(argv[4]);
+		phase_sizes = malloc(sizeof(int)*num_phases);
+		for(int i=0; i<num_phases; i++){phase_sizes[i]=atoi(argv[5+i]);} 
+	}else{
+		int ori_size;
+		MPI_Comm_size(MPI_COMM_WORLD, &ori_size); 
+		phase_sizes = malloc(sizeof(int));
+		phase_sizes[0] = ori_size;
+	}
 	int nsteps = atoi(argv[2]);
 	int N = atoi(argv[1]);         
 	int phase_size;
