@@ -219,7 +219,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 int main(int argc, char *argv[])
 {
 	// argv1 = grid size(side), argv2= iterations, argv2 = output file argv3=phase to skip to, 
-	
+    MPI_Init(&argc, &argv);	
 	int end_time;
 	char type_of_matrix = 's';  // inital state
    
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
     double min_calc_time  = 0;	
 	double preprep_time = MPI_Wtime();
     /* Initialize MPI */
-    MPI_Init(&argc, &argv);       
+        
 	int start_time = MPI_Wtime(); 
 	double init_time = MPI_Wtime();
 	MPI_Comm universe = MPI_COMM_NULL;
