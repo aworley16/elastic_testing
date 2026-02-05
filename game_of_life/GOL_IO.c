@@ -297,17 +297,18 @@ int main(int argc, char *argv[])
 			setup_time = MPI_Wtime();
 			
 			//Do iterations for this phase
+			printf("rank %d at iter loop\n", global_rank);
 			for (int i = 0; i < nsteps; i++)
 			{
 				Halo(local, N, local_rows, global_rank, phase_comm);
 				Step(&local, &local_new, N, local_rows);
 			}
-			
+			printf("rank %d after iter loop\n", global_rank);
 			phase_end = MPI_Wtime();
 			//Gather data back to main board	
 			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
 			gather_time = MPI_Wtime();  
-	
+			printf("rank %d after gather\n", global_rank);
 			if(global_rank == 0){
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
 				printf("%f, %f, %f, %f, %f, ",
