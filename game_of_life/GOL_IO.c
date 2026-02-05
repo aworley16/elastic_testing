@@ -207,9 +207,9 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 
 int main(int argc, char *argv[])
 {
-    int start_time = MPI_Wtime();
+    
 	MPI_Init(&argc, &argv);	
-	
+	int start_time = MPI_Wtime();
 	char type_of_matrix = 's';  // inital state
 
 	int phase = 0;
