@@ -127,7 +127,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 
 		printf("Spawning %d processe(s) \n", expand_num);
 		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
-		MPI_Bcast(&phase, 1, MPI_INT, 0, bridge);
+		MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);
 		printf("parent at merge\n");
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		printf("Spawns been merged\n");
