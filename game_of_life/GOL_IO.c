@@ -289,7 +289,7 @@ int main(int argc, char *argv[])
 		color = 0;
 		phase_size = phase_sizes[phase]; 
 		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
-		printf("rank %d after comm_set\n", global_rank);
+		printf("rank %d after comm_set -- %d\n", global_rank, color);
 		if(color == 1){
 			setup_grids(&local, &local_new, N, &phase_comm, change);
 			printf("rank %d after grid_set\n", global_rank);
