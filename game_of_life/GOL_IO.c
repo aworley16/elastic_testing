@@ -291,33 +291,30 @@ int main(int argc, char *argv[])
 		}
 	}	
 	
-	printf("rank %d at phase loop\n", global_rank);
 	for(; phase < num_phases; phase++)
 	{
 		phase_start = MPI_Wtime();
 		color = 0;
 		phase_size = phase_sizes[phase]; 
 		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
-		printf("rank %d after comm_set -- %d\n", global_rank, color);
+
 		if(color == 1){
 			setup_grids(&local, &local_new, N, &phase_comm, change);
-			printf("rank %d after grid_set\n", global_rank);
 			local_rows = sendcounts[global_rank]/(N+2);
 			setup_time = MPI_Wtime();
 			
 			//Do iterations for this phase
-			printf("rank %d at iter loop\n", global_rank);
 			for (int i = 0; i < nsteps; i++)
 			{
 				Halo(local, N, local_rows, global_rank, phase_comm);
 				Step(&local, &local_new, N, local_rows);
 			}
-			printf("rank %d after iter loop\n", global_rank);
+			
 			phase_end = MPI_Wtime();
 			//Gather data back to main board	
 			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
 			gather_time = MPI_Wtime();  
-			printf("rank %d after gather\n", global_rank);
+			
 			if(global_rank == 0){
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
 				printf("%f, %f, %f, %f, %f, ",
