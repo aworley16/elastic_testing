@@ -128,7 +128,8 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 
 		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
 		printf("TO spawn %d\n", phase); 
-		MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);
+		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, 0, bridge);}
+		else{MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, bridge);}
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
@@ -265,7 +266,7 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
-		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being intercomm weridness. 
+		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //Null due to being intercomm weridness. 
 		printf("--%d\n\n", phase); 
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
 		MPI_Comm_size(universe, &uni_size);     
