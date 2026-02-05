@@ -133,6 +133,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		MPI_Comm_dup(new_uni, universe);
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
+		*color=1;
 	}
 	//if all processes will be used in phase, dupe universe and mark all;
 	if(phase_size == uni_size){
