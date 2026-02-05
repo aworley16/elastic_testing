@@ -97,11 +97,11 @@ int write_file(char* filename, int x, int y){
 		fprintf(ptr, "%d\n", boardState[i*(x+2)+(y+1)]); //no comma at end of line
 	}
 	fclose(ptr);
-	return;
+	return 0;
 }
 
 //update universe, phase_comm, color, and makes sure head proc is known everywhere if it changed
-int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* phase_comm, int* color){
+int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* phase_comm, int* color, char** argv){
 	
 	int uni_size = -1;
 	int uni_rank = -1;
@@ -130,12 +130,10 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		int expand_num = phase_size - uni_size;
 		MPI_Comm bridge;
 		MPI_Comm new_uni;
-		char gsize[20];
-		char p[20];
-		sprintf(gsize, "%d, ,", N);
-		sprintf(p, "%d", phase_size);
-	    char *args[] = {gsize, p, NULL};
-		MPI_Comm_spawn("./gol.exe", args, expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
+
+		printf("Spawning %d processes \n", expand_num);
+		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
+		MPI_Bcast(&phase, 1, MPI_INT, 0, bridge);
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
@@ -222,23 +220,24 @@ int main(int argc, char *argv[])
     MPI_Init(&argc, &argv);	
 	int end_time;
 	char type_of_matrix = 's';  // inital state
-   
-	int phase = 1; 
-	int num_phases = 1;
-	int end_phase = phase+num_phases;
-	//int phases[] = {1,2,4,8,16,32};
+
+	int phase = 0;
+	int num_phases = 1; 
+	if(argc >= 5){num_phases = atoi(argv[4]);}
+	int* phase_sizes = malloc(sizeof(int)*num_phases);
+	for(int i=0; i<num_phases; i++){phase_sizes[i]=atoi(argv[5+i]);} 
 	
+	printf("+-%d %d %d %d \n", phase, num_phases, phase_sizes[0], phase_sizes[1]); 
+
 	int nsteps = atoi(argv[2]);
 	int N = atoi(argv[1]);         
-	if(argc == 5) {phase = atoi(argv[4]);} //printf("skipping to phase %d\n", phase);}
-	
 	int phase_size;
 	int color = 0;                       
 
     int local_rows;
 	int global_rank;
     int uni_size;
-
+	
 	int*local = NULL; 
 	int*local_new = NULL;
 	
@@ -271,21 +270,19 @@ int main(int argc, char *argv[])
 	MPI_Comm parent;
     MPI_Comm_get_parent(&parent); //check if this is a spawned child processes
 	
-	int original = -1;
-	int previous = -1; 
+	int original, previous;
+	 
 	char* filename = NULL;
+
 	filename = argv[3];
 	double read_start=0, read_end=0;
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
 		MPI_Comm new_uni;
-		phase = atoi(argv[2]); //use second argument to skip to the current phase in loop. 
-		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)
-	/* 	MPI_Comm_dup(new_uni, &universe);  //dupe new_uni with parent to maintain context with handle.
-		MPI_Comm_free(&new_uni);             //cleanup unnecessary comm?? */
-		
-		//Update ID
+		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being outside world. 
+		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
+
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
 	}
@@ -309,45 +306,33 @@ int main(int argc, char *argv[])
 			}
 		}
 	}	
-	previous = uni_size;
-
-	for(; phase < end_phase; phase++)
+	
+	printf("rank %d at phase loop\n", global_rank);
+	for(; phase < num_phases; phase++)
 	{
 		phase_start = MPI_Wtime();
-		color = 0; 
-		phase_size = uni_size; //phases[phase];
-
-		int check = -1;
-		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color);
+		color = 0;
+		phase_size = phase_sizes[phase]; 
+		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
 		
 		if(color == 1){
-			MPI_Comm_rank(phase_comm, &check);
 			setup_grids(&local, &local_new, N, &phase_comm, change);
 			local_rows = sendcounts[global_rank]/(N+2);
 			setup_time = MPI_Wtime();
+			
 			//Do iterations for this phase
 			for (int i = 0; i < nsteps; i++)
 			{
-				//local_halo_start = MPI_Wtime();
 				Halo(local, N, local_rows, global_rank, phase_comm);
-				//local_halo_time += MPI_Wtime()- local_halo_start;	
-				
-				//local_calc_start = MPI_Wtime();
 				Step(&local, &local_new, N, local_rows);
-				//local_calc_time += MPI_Wtime() - local_calc_start;
 			}
+			
 			phase_end = MPI_Wtime();
-			
 			//Gather data back to main board	
-			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);
-			
+			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
 			gather_time = MPI_Wtime();  
-			/* MPI_Reduce(&local_calc_time, &min_calc_time, 1, MPI_DOUBLE, MPI_MIN, 0, phase_comm);
-            MPI_Reduce(&local_calc_time, &max_calc_time, 1, MPI_DOUBLE, MPI_MAX, 0, phase_comm); 
-			MPI_Reduce(&local_halo_time, &max_halo_time, 1, MPI_DOUBLE, MPI_MAX, 0, phase_comm);  */
-		
+	
 			if(global_rank == 0){
-			
 				if(phase == 0){previous = original;}
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
 				printf("%f, %f, %f, %f, %f, ",
