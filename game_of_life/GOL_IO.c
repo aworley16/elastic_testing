@@ -62,10 +62,7 @@ int* initalize_root_board(int N, char seed){
 int read_file(char* filename, int x, int y){
 	FILE* ptr = fopen(filename, "r");
 	if(ptr==NULL){return -1;}
-	int num_cells = (x+2) * (y+2);
-
 	char line[(x+2)*2];
-	char* read_line;
 	char* token;
 	int offset = 0; 
 	int k=0;
@@ -86,10 +83,7 @@ int read_file(char* filename, int x, int y){
 int write_file(char* filename, int x, int y){
 	FILE* ptr = fopen(filename, "w");
 	if(ptr==NULL){exit(1);}
-	
-	int num_cells = (x+2) * (y+2);
-	char line[num_cells];
-	
+
 	for(int i=0; i<x+2; i++){
 		for(int j=0; j<y+1; j++){
 			fprintf(ptr, "%d,", boardState[i*(x+2)+j]);
@@ -270,7 +264,8 @@ int main(int argc, char *argv[])
 	MPI_Comm parent;
     MPI_Comm_get_parent(&parent); //check if this is a spawned child processes
 	
-	int original, previous;
+	int original = uni_size;
+	int previous = uni_size;
 	 
 	char* filename = NULL;
 
@@ -333,7 +328,6 @@ int main(int argc, char *argv[])
 			gather_time = MPI_Wtime();  
 	
 			if(global_rank == 0){
-				if(phase == 0){previous = original;}
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
 				printf("%f, %f, %f, %f, %f, ",
 				        read_end-read_start,
