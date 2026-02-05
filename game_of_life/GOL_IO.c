@@ -221,7 +221,7 @@ int main(int argc, char *argv[])
 	int nsteps = atoi(argv[2]);
 	int N = atoi(argv[1]);         
 	int phase_size;
-	int color = 0;                       
+	int color = 1; //assume everyone partipates in first stage, then trim.                       
 
     int local_rows;
 	int global_rank;
