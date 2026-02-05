@@ -106,6 +106,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		int curr_size = -1;
 		MPI_Comm_size(*phase_comm, &curr_size);
 		if(phase_size == curr_size){
+			printf("SHORTING\n")
 			return 1;	
 		}
 		else{
@@ -117,7 +118,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 	MPI_Comm_size(*universe, &uni_size);
 	MPI_Comm_rank(*universe, &uni_rank);
 	*color = 0; 
-	
+	printf("%d -- %d vs %d\n", uni_rank, uni_size, phase_size);
 	//if additional processes needed, expand universe	
 	if(phase_size > uni_size){
 		//calculate and spawn processes as needed.
@@ -294,6 +295,7 @@ int main(int argc, char *argv[])
 		phase_start = MPI_Wtime();
 		color = 0;
 		phase_size = phase_sizes[phase]; 
+		printf("rank %d of %d at setup\n", global_rank, phase_size); 
 		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
 
 		if(color == 1){
