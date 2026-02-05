@@ -125,10 +125,13 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		MPI_Comm bridge;
 		MPI_Comm new_uni;
 
-		printf("Spawning %d processes \n", expand_num);
+		printf("Spawning %d processe(s) \n", expand_num);
 		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
+		printf("Spawns have called init\n");
 		MPI_Bcast(&phase, 1, MPI_INT, 0, bridge);
+		printf("Spawns been broadcasted\n");
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
+		printf("Spawns been merged\n");
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
 		MPI_Comm_size(*universe, &uni_size);
@@ -148,7 +151,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		int test_size = 0;
 		MPI_Comm_size(*phase_comm, &test_size);
 	}
-	printf("rank %d -- color %d -- %d vs %d \n", uni_rank, *color, uni_size, phase_size);
+	
 	return 0;
 }
 
@@ -264,9 +267,11 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
+		printf("Spawn at bcast\n");
 		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being outside world. 
+		printf("Spawn at merge\n");
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
-
+		printf("Spawn after merge\n");
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
 	}
@@ -317,7 +322,7 @@ int main(int argc, char *argv[])
 			
 			if(global_rank == 0){
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
-				printf("%f, %f, %f, %f, %f, ",
+				printf("%f, %f, %f, %f, %f \n",
 				        read_end-read_start,
 						setup_time-phase_start,
 						setup_time-start_time,
