@@ -148,7 +148,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		int test_size = 0;
 		MPI_Comm_size(*phase_comm, &test_size);
 	}
-	printf("rank %d -- color %d -- uni_size\n", uni_rank, *color, uni_size);
+	printf("rank %d -- color %d -- %d\n", uni_rank, *color, uni_size);
 	return 0;
 }
 
