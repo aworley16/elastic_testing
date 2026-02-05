@@ -131,7 +131,6 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
-		int old_rank = uni_rank;
 		MPI_Comm_size(*universe, &uni_size);
 		MPI_Comm_rank(*universe, &uni_rank);
 	}
@@ -163,9 +162,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 	MPI_Comm_size(*phase_comm, &size);
 	MPI_Comm_rank(*phase_comm, &rank);
 	
-	//allocate space for displacements and counts;
-	int* int_ptr = NULL;
-	
+	//allocate space for displacements and counts;	
 	if(sendcounts!=NULL){free(sendcounts);}
 	if(disp!=NULL){free(disp);}
 	if(*local!=NULL){free(*local);}
@@ -221,8 +218,6 @@ int main(int argc, char *argv[])
 	int* phase_sizes = malloc(sizeof(int)*num_phases);
 	for(int i=0; i<num_phases; i++){phase_sizes[i]=atoi(argv[5+i]);} 
 	
-	printf("+-%d %d %d %d \n", phase, num_phases, phase_sizes[0], phase_sizes[1]); 
-
 	int nsteps = atoi(argv[2]);
 	int N = atoi(argv[1]);         
 	int phase_size;
@@ -242,18 +237,8 @@ int main(int argc, char *argv[])
 	//double setup_start = 0;
 	double setup_time  = 0;
 	double gather_time = 0; 
-
-	double local_halo_start= 0;
-	double local_halo_time = 0;
-
-	double local_calc_start = 0;
-	double local_calc_time  = 0;
 	
 	//combined timing variables
-
-	double max_halo_time = 0;
-	double max_calc_time;
-    double min_calc_time  = 0;	
 	double preprep_time = MPI_Wtime();
     /* Initialize MPI */
         
@@ -274,7 +259,6 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
-		MPI_Comm new_uni;
 		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being outside world. 
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
 
@@ -360,10 +344,8 @@ int main(int argc, char *argv[])
 // The stepping function
 int*Step(int** local, int** local_new, int cols, int rows)
 {
-    int i, j, k, l; 
+    int i, j; 
     int neighbours = 0;
-	int neighbor;
-	int offset;
 	int TL, TC, TR;
 	int L, C, R;
 	int BL, BC, BR;
