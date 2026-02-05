@@ -106,7 +106,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		int curr_size = -1;
 		MPI_Comm_size(*phase_comm, &curr_size);
 		if(phase_size == curr_size){
-			printf("SHORTING\n")
+			printf("SHORTING\n");
 			return 1;	
 		}
 		else{
