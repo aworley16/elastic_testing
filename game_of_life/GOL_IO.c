@@ -264,7 +264,8 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
-		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being outside world. 
+		MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, parent); //Null due to being intercomm weridness. 
+		printf("--%d\n\n", phase); 
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
