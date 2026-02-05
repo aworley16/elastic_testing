@@ -186,7 +186,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 	}
 	
 	//allocate enough space to hold expected data and ghost cells. 
-	int local_size = (sendcounts[rank]+2*(N+2)* sizeof(int));
+	//int local_size = (sendcounts[rank]+2*(N+2)* sizeof(int));
 	
 	//int* temp_ptr = (int*)realloc(*local, local_size);
 	int* temp_ptr = NULL;
@@ -207,9 +207,9 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 
 int main(int argc, char *argv[])
 {
-	// argv1 = grid size(side), argv2= iterations, argv2 = output file argv3=phase to skip to, 
-    MPI_Init(&argc, &argv);	
-	int end_time;
+    int start_time = MPI_Wtime();
+	MPI_Init(&argc, &argv);	
+	
 	char type_of_matrix = 's';  // inital state
 
 	int phase = 0;
@@ -238,12 +238,8 @@ int main(int argc, char *argv[])
 	double setup_time  = 0;
 	double gather_time = 0; 
 	
-	//combined timing variables
-	double preprep_time = MPI_Wtime();
-    /* Initialize MPI */
-        
-	int start_time = MPI_Wtime(); 
-	double init_time = MPI_Wtime();
+	 
+
 	MPI_Comm universe = MPI_COMM_NULL;
 	MPI_Comm phase_comm = MPI_COMM_NULL;
 	MPI_Comm parent;
@@ -347,7 +343,7 @@ int*Step(int** local, int** local_new, int cols, int rows)
     int i, j; 
     int neighbours = 0;
 	int TL, TC, TR;
-	int L, C, R;
+	int L, R;
 	int BL, BC, BR;
 
     // i and j are used to cycle through the pixels of a matrix, while k and l are used to look at each pixel's neighbours
@@ -362,7 +358,7 @@ int*Step(int** local, int** local_new, int cols, int rows)
 			TR = (*local)[(i-1)*(cols+2)+(j+1)];
 			
 			L = (*local)[(i)*(cols+2)+(j-1)];
-			C = (*local)[(i)*(cols+2)+(j+0)];
+			//C = (*local)[(i)*(cols+2)+(j+0)];
 			R = (*local)[(i)*(cols+2)+(j+1)];
             
 			BL = (*local)[(i+1)*(cols+2)+(j-1)];
