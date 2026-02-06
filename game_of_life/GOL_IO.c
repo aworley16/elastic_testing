@@ -322,8 +322,6 @@ int main(int argc, char *argv[])
 			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
 			gather_time = MPI_Wtime();  
 			
-			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
-			
 			if(global_rank == 0){
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
 				printf("%f, %f, %f, %f, %f \n",
