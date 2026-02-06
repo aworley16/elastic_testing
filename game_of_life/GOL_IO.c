@@ -129,8 +129,6 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
 		printf("TO spawn %d\n", phase); 
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);}
-		//else{MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, bridge);}
-		printf("AT MERGE %d\n", uni_rank); 
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
@@ -269,8 +267,7 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
-		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //Null due to being intercomm weridness. 
-		printf("++%d\n\n", phase); 
+		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); 
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
@@ -305,8 +302,9 @@ int main(int argc, char *argv[])
 		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
 
 		if(color == 1){
-			printf("rank %d of %d \n", global_rank, phase_size); 
+			printf("rank %d of %d before grids\n", global_rank, phase_size); 
 			setup_grids(&local, &local_new, N, &phase_comm, change);
+			printf("rank %d of %d  after grids\n", global_rank, phase_size); 
 			local_rows = sendcounts[global_rank]/(N+2);
 			setup_time = MPI_Wtime();
 			
