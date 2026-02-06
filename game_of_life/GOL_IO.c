@@ -267,10 +267,13 @@ int main(int argc, char *argv[])
 	//if child process go ahead a merge into universe 
 	if(parent != MPI_COMM_NULL) 
 	{
+		MPI_Comm new_uni;
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); 
-		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
+		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	
+		MPI_Comm_dup(new_uni, &universe)
 		MPI_Comm_size(universe, &uni_size);     
-		MPI_Comm_rank(universe, &global_rank);   
+		MPI_Comm_rank(universe, &global_rank);
+		MPI_Comm_free(&new_uni);
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
