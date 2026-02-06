@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
 		MPI_Comm new_uni;
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); 
 		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	
-		MPI_Comm_dup(new_uni, &universe)
+		MPI_Comm_dup(new_uni, &universe);
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);
 		MPI_Comm_free(&new_uni);
