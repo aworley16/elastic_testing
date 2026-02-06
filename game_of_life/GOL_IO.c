@@ -222,6 +222,7 @@ int main(int argc, char *argv[])
 		phase_sizes = malloc(sizeof(int)*num_phases);
 		for(int i=0; i<num_phases; i++){
 			phase_sizes[i]=atoi(argv[5+i]);
+			printf("%d -- %d -- \n", i,  phase_sizes[i])
 		} 
 	}else{
 		int ori_size;
@@ -232,7 +233,7 @@ int main(int argc, char *argv[])
 	int nsteps = atoi(argv[2]);
 	int N = atoi(argv[1]);         
 	int phase_size;
-	int color = 1; //assume everyone partipates in first stage, then trim.                       
+	int color = 1; //assume everyone participates in first stage, then trim.                       
 
     int local_rows;
 	int global_rank;
@@ -249,8 +250,6 @@ int main(int argc, char *argv[])
 	double setup_time  = 0;
 	double gather_time = 0; 
 	
-	 
-
 	MPI_Comm universe = MPI_COMM_NULL;
 	MPI_Comm phase_comm = MPI_COMM_NULL;
 	MPI_Comm parent;
