@@ -128,8 +128,9 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 
 		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
 		printf("TO spawn %d\n", phase); 
-		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, 0, bridge);}
-		else{MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, bridge);}
+		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);}
+		//else{MPI_Bcast(&phase, 1, MPI_INT, MPI_PROC_NULL, bridge);}
+		printf("AT MERGE %d\n", uni_rank); 
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
 		MPI_Comm_dup(new_uni, universe);
