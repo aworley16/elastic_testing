@@ -222,7 +222,7 @@ int main(int argc, char *argv[])
 		phase_sizes = malloc(sizeof(int)*num_phases);
 		for(int i=0; i<num_phases; i++){
 			phase_sizes[i]=atoi(argv[5+i]);
-			printf("%d -- %d -- \n", i,  phase_sizes[i])
+			printf("%d -- %d -- \n", i,  phase_sizes[i]);
 		} 
 	}else{
 		int ori_size;
