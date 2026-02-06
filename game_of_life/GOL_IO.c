@@ -118,7 +118,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 	MPI_Comm_size(*universe, &uni_size);
 	MPI_Comm_rank(*universe, &uni_rank);
 	*color = 0; 
-	printf("%d -- %d vs %d\n", uni_rank, uni_size, phase_size);
+
 	//if additional processes needed, expand universe	
 	if(phase_size > uni_size){
 		//calculate and spawn processes as needed.
@@ -126,8 +126,7 @@ int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* 
 		MPI_Comm bridge;
 		MPI_Comm new_uni;
 
-		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE);
-		printf("TO spawn %d\n", phase); 
+		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);}
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(universe);
@@ -301,13 +300,13 @@ int main(int argc, char *argv[])
 		phase_start = MPI_Wtime();
 		color = 0;
 		phase_size = phase_sizes[phase]; 
-		printf("rank %d of %d at setup\n", global_rank, phase_size); 
+		//printf("rank %d of %d at setup\n", global_rank, phase_size); 
 		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
 
 		if(color == 1){
-			printf("rank %d of %d before grids\n", global_rank, phase_size); 
+			//printf("rank %d of %d before grids\n", global_rank, phase_size); 
 			setup_grids(&local, &local_new, N, &phase_comm, change);
-			printf("rank %d of %d  after grids\n", global_rank, phase_size); 
+			//printf("rank %d of %d  after grids\n", global_rank, phase_size); 
 			local_rows = sendcounts[global_rank]/(N+2);
 			setup_time = MPI_Wtime();
 			
@@ -322,6 +321,8 @@ int main(int argc, char *argv[])
 			//Gather data back to main board	
 			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
 			gather_time = MPI_Wtime();  
+			
+			MPI_Reduce(&local_calc_time, &total_calc_time, 1, MPI_DOUBLE, MPI_SUM, 0, phase_comm);
 			
 			if(global_rank == 0){
 				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
