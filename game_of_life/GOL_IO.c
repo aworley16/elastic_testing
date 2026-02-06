@@ -216,13 +216,15 @@ int main(int argc, char *argv[])
 	int start_time = MPI_Wtime();
 	char type_of_matrix = 's';  // inital state
 
-	int phase = 0;
+	int phase = 99;
 	int num_phases = 1; 
 	int* phase_sizes;
 	if(argc >= 5){
 		num_phases = atoi(argv[4]);
 		phase_sizes = malloc(sizeof(int)*num_phases);
-		for(int i=0; i<num_phases; i++){phase_sizes[i]=atoi(argv[5+i]);} 
+		for(int i=0; i<num_phases; i++){
+			phase_sizes[i]=atoi(argv[5+i]);
+		} 
 	}else{
 		int ori_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &ori_size); 
@@ -267,7 +269,7 @@ int main(int argc, char *argv[])
 	if(parent != MPI_COMM_NULL) 
 	{
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //Null due to being intercomm weridness. 
-		printf("--%d\n\n", phase); 
+		printf("++%d\n\n", phase); 
 		MPI_Intercomm_merge(parent, 0, &universe); //merge with parent comm (current universe)	
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);   
@@ -278,7 +280,7 @@ int main(int argc, char *argv[])
 		MPI_Comm_size(universe, &uni_size);     
 		MPI_Comm_rank(universe, &global_rank);    
 		original = uni_size; 
-		
+		phase = 0; 
 		if(global_rank==0){
 			boardState = (int*) calloc((N+2) * (N+2), sizeof(int));
 			int read = -1;
