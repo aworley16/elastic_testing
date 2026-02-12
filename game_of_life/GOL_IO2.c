@@ -18,6 +18,7 @@ void print_matrix(int* A, int n, int rows);
 void Halo(int* local, int N, int rows, int rank, MPI_Comm comm);
 
 int *boardState;
+int *local, *local_new; 
 int *sendcounts, *disp;
 
 void cleanup(){
@@ -94,62 +95,49 @@ int write_file(char* filename, int x, int y){
 	return 0;
 }
 
-//update universe, phase_comm, color, and makes sure head proc is known everywhere if it changed
-int setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, MPI_Comm* phase_comm, int* color, char** argv){
-	
+//expands or shrinks universe/phase_comm to match requested phase
+//returns time that universe changed. 
+double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* color, char** argv, int* change){
+	//check if universe is big enough for phase. 
 	int uni_size = -1;
 	int uni_rank = -1;
-
-	//If phase_comm exists and is same size as previous then just use previous setup
-	if(*phase_comm != MPI_COMM_NULL)
-	{
-		int curr_size = -1;
-		MPI_Comm_size(*phase_comm, &curr_size);
-		if(phase_size == curr_size){
-			printf("SHORTING\n");
-			return 1;	
-		}
-		else{
-			MPI_Comm_free(phase_comm);
-		}
-	}
-	
-	//if not figure out what needs to happen & clear room for new phase_comm
 	MPI_Comm_size(*universe, &uni_size);
 	MPI_Comm_rank(*universe, &uni_rank);
-	*color = 0; 
-
-	//if additional processes needed, expand universe	
-	if(phase_size > uni_size){
-		//calculate and spawn processes as needed.
-		int expand_num = phase_size - uni_size;
-		MPI_Comm bridge;
+	
+	//if exactly enough processes exist for phase, just use current universe. 
+	if(uni_size == phase_size){
+		if(local != NULL){*change = 0;}else{*change=1;} 
+		return 0;
+	}
+	// if too many processes exist, split and send kill flag (color == 0) to unneeded processes. 
+	else if(uni_size > phase_size){
+		if(uni_rank >= phase_size){*color = 0;}
+		MPI_Comm phase_comm;
+		MPI_Comm_split(*universe, *color, uni_rank, &phase_comm);
+		MPI_Comm_free(universe);  //free old universe
+		*universe = phase_comm;
+		*change = 1;
+		return 0; 
+	}
+	//if not enough processes exist, spawn up new processes and merge into universe
+	else{
 		MPI_Comm new_uni;
-
-		MPI_Comm_spawn("./gol.exe", &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
-		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);}
+		MPI_Comm bridge; 
+		int expand_num = phase_size - uni_size;
+		//if(uni_rank==0){printf("Spawning %d processes\n", expand_num);}
+		double spawn_time = MPI_Wtime();
+		MPI_Comm_spawn(argv[0], &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
+		//if(uni_rank==0){printf("parent pass spawn\n");fflush(stdout);}
+		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);} //broadcast current phase number.
+		
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
-		MPI_Comm_free(universe);
-		MPI_Comm_dup(new_uni, universe);
-		MPI_Comm_size(*universe, &uni_size);
-		MPI_Comm_rank(*universe, &uni_rank);
-		*color=1;
+		//if(uni_rank==0){printf("After merge\n");}
+		MPI_Comm_free(universe);                  //free old handle
+		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
+		spawn_time = MPI_Wtime()-spawn_time;
+		*change = 2;
+		return spawn_time; 
 	}
-	//if all processes will be used in phase, dupe universe and mark all;
-	if(phase_size == uni_size){
-		MPI_Comm_dup(*universe, phase_comm);
-		*color = 1;
-	}
-	
-	//if only some processes will be used split phase_comm from universe
-	if(phase_size < uni_size){
-		if(uni_rank < phase_size){*color = 1;}
-		MPI_Comm_split(*universe, *color, uni_rank, phase_comm);
-		int test_size = 0;
-		MPI_Comm_size(*phase_comm, &test_size);
-	}
-	
-	return 0;
 }
 
 //given a phase_comm, allocate space for local rows
@@ -206,132 +194,157 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 
 int main(int argc, char *argv[])
 {
-    
 	MPI_Init(&argc, &argv);	
+	double start_time = MPI_Wtime();
+	//variables for selecting process ranks for phases
+	int color = 1;
+	int uni_size;
+	int uni_rank;
+	MPI_Comm_size(MPI_COMM_WORLD, &uni_size);     
+	MPI_Comm_rank(MPI_COMM_WORLD, &uni_rank);
+	int change = 0; //flag to see if local grid needs to be updated.
 	
-	int start_time = MPI_Wtime();
-	char type_of_matrix = 's';  // inital state
-
-	int phase = 99;
+	//parse arguments
+	int N = atoi(argv[1]);     //size of grid N x N 
+	int nsteps = atoi(argv[2]);//iterations per phase
+	
+	char* filename = NULL;
+	char type_of_matrix = 's';  //initial board state no file provided. 	
+	int file = 0;
+	if(argc >= 4){filename = argv[3]; file=1;} //get I/O file if provided.
+	
+	//parse the phase diagram if phases given or go default if not provided.
+	int phase = 0;
 	int num_phases = 1; 
 	int* phase_sizes;
+	int phase_size;
+	
 	if(argc >= 5){
 		num_phases = atoi(argv[4]);
-		phase_sizes = malloc(sizeof(int)*num_phases);
+		phase_sizes = (int*)malloc(sizeof(int)*num_phases);
 		for(int i=0; i<num_phases; i++){
 			phase_sizes[i]=atoi(argv[5+i]);
 		} 
-	}else{
-		int ori_size;
-		MPI_Comm_size(MPI_COMM_WORLD, &ori_size); 
-		phase_sizes = malloc(sizeof(int));
-		phase_sizes[0] = ori_size;
+	}else{ //If no phases provided use entire world as single phase. 
+		MPI_Comm_size(MPI_COMM_WORLD, &uni_size); 
+		phase_sizes = (int*)malloc(sizeof(int));
+		*phase_sizes = uni_size;
 	}
-	int nsteps = atoi(argv[2]);
-	int N = atoi(argv[1]);         
-	int phase_size;
-	int color = 1; //assume everyone participates in first stage, then trim.                       
+	
+	//local size variables
+	int local_rows; 	
 
-    int local_rows;
-	int global_rank;
-    int uni_size;
-	
-	int*local = NULL; 
-	int*local_new = NULL;
-	
-	//local timing variables
-	double phase_start = 0;
-	double phase_end   = 0; 
-	
-	//double setup_start = 0;
-	double setup_time  = 0;
-	double gather_time = 0; 
-	
-	MPI_Comm universe = MPI_COMM_NULL;
-	MPI_Comm phase_comm = MPI_COMM_NULL;
-	MPI_Comm parent;
+	//generate placeholders for various comms
+	MPI_Comm universe   = MPI_COMM_NULL;
+	MPI_Comm parent     = MPI_COMM_NULL;
     MPI_Comm_get_parent(&parent); //check if this is a spawned child processes
-	
-	int original = uni_size;
-	int previous = uni_size;
-	 
-	char* filename = NULL;
 
-	filename = argv[3];
-	double read_start=0, read_end=0;
-	//if child process go ahead a merge into universe 
+	//local timing variables
+	double read_time;
+	double comm_time;
+	double scatter_time;
+	double spawn_time;
+	double grid_time;
+	double work_time;
+	double gather_time;
+	double write_time;
+	double total_time;
+
+	//if child process go ahead a merge into existing universe 
 	if(parent != MPI_COMM_NULL) 
 	{
+		//printf("CHILD PROCESS\n"); fflush(stdout);
 		MPI_Comm new_uni;
-		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); 
+		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //recieve current phase via bcast
 		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	
-		MPI_Comm_dup(new_uni, &universe);
-		MPI_Comm_size(universe, &uni_size);     
-		MPI_Comm_rank(universe, &global_rank);
-		MPI_Comm_free(&new_uni);
+		MPI_Comm_free(&universe);                  //clear old universe
+		universe = new_uni;                       //apply universe handle to the new universe
+		MPI_Comm_size(universe, &uni_size);      
+		MPI_Comm_rank(universe, &uni_rank);
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
-		MPI_Comm_dup(MPI_COMM_WORLD, &universe);
-		MPI_Comm_size(universe, &uni_size);     
-		MPI_Comm_rank(universe, &global_rank);    
-		original = uni_size; 
-		phase = 0; 
-		if(global_rank==0){
+		printf("MAIN PROCESS\n"); fflush(stdout);
+		MPI_Comm_dup(MPI_COMM_WORLD, &universe); //universe starts as dupe of WORLD
+		//if root setup initial board (either reading or by generating). 
+		if(uni_rank==0){
 			boardState = (int*) calloc((N+2) * (N+2), sizeof(int));
 			int read = -1;
-			if(argc >= 3 && filename != NULL){
-				read_start = MPI_Wtime();
+			if(file){
+				read_time = MPI_Wtime();
 				read = read_file(filename, N, N);
-				read_end = MPI_Wtime();
+				read_time = MPI_Wtime()-read_time;
 			}
 			if(read < 0){
 				boardState = initalize_root_board(N, type_of_matrix);	
 			}
+			printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
+			
+			
 		}
-	}	
-	
+	}
+	printf("AT PHASE\n"); fflush(stdout);
+	//start at phase described in bcast or 0 if initial 
 	for(; phase < num_phases; phase++)
 	{
-		phase_start = MPI_Wtime();
-		color = 0;
+		//modify universe to fit phase
+		comm_time = MPI_Wtime();
+		color = 1;
+		change = 0; 
 		phase_size = phase_sizes[phase]; 
-		int change = setup_comms(N, phase, phase_size, &universe, &phase_comm, &color, argv);
-
+		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
+		//printf("AFTER comm\n"); fflush(stdout);
+		if(color == 0){  //if process kill signal -- kill process
+		//      		 universe should have been updated in setup_comms
+			MPI_Finalize();
+			return 0; 
+		}
+		comm_time = MPI_Wtime()-comm_time;
+		
+		//if participating in phase
 		if(color == 1){
-			setup_grids(&local, &local_new, N, &phase_comm, change);
-			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, *local+(N+2), sendcounts[rank], MPI_INT, 0, phase_comm);
-			local_rows = sendcounts[global_rank]/(N+2);
-			setup_time = MPI_Wtime();
+			
+			//setup local grids if universe changed. 
+			grid_time=MPI_Wtime();
+			setup_grids(&local, &local_new, N, &universe, change);
+			local_rows = sendcounts[uni_rank]/(N+2);
+			grid_time=MPI_Wtime()-grid_time;
+			
+			scatter_time=MPI_Wtime();
+			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, local+(N+2), sendcounts[uni_rank], MPI_INT, 0, universe);
+			scatter_time=MPI_Wtime();
 			
 			//Do iterations for this phase
+			work_time = MPI_Wtime();
 			for (int i = 0; i < nsteps; i++)
 			{
-				Halo(local, N, local_rows, global_rank, phase_comm);
+				Halo(local, N, local_rows, uni_rank, universe);
 				Step(&local, &local_new, N, local_rows);
 			}
+			work_time = MPI_Wtime()-work_time;
 			
-			phase_end = MPI_Wtime();
-			//Gather data back to main board	
-			MPI_Gatherv(local+(N+2), sendcounts[global_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, phase_comm);		
+			//Gather data back to main board at end of phase	
 			gather_time = MPI_Wtime();  
+			MPI_Gatherv(local+(N+2), sendcounts[uni_rank], MPI_INT, boardState+(N+2), sendcounts, disp, MPI_INT, 0, universe);		
+			gather_time = MPI_Wtime()-gather_time;  
 			
-			if(global_rank == 0){
-				printf("%d, %d, %d, %d,",N, nsteps, previous, phase_size);
-				printf("%f, %f, %f, %f, %f \n",
-				        read_end-read_start,
-						setup_time-phase_start,
-						setup_time-start_time,
-						phase_end-setup_time,
-						gather_time-phase_end
+			//print phase statistics
+			if(uni_rank == 0){
+				MPI_Comm_size(universe, &uni_size); 
+				printf("%d, %d, %d, %d,", N, nsteps, phase_size, uni_size);
+				printf("%f, %f, %f, %f, %f, %f, %f, \n",
+				        read_time,
+						spawn_time,
+						comm_time,
+						grid_time,
+						scatter_time,
+						work_time,
+						gather_time
 			    );
-			
-				previous = phase_size;
-				fflush(stdout);
 			}	
-		}
+		}fflush(stdout);
 	}	
-	if(global_rank ==0){
+	if(uni_rank ==0){
 		double write_start = MPI_Wtime();
 		if(filename==NULL){filename="out--2.csv";}
 		write_file(filename, N, N);
