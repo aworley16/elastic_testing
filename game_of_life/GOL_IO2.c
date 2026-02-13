@@ -133,9 +133,6 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(&old_uni);                  //free old handle
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
-/* 		printf("AT NEW BCAST\n"); fflush(stdout);
-		MPI_Bcast(&phase, 1, MPI_INT, 0, *universe);
-		printf("AFTER NEW BCAST\n"); fflush(stdout); */
 		spawn_time = MPI_Wtime()-spawn_time;
 		*change = 1;
 		return spawn_time; 
@@ -289,7 +286,7 @@ int main(int argc, char *argv[])
 			printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
 		}
 	}
-	//printf("AT PHASE\n"); fflush(stdout);
+	
 	//start at phase described in bcast or 0 if initial 
 	for(; phase < num_phases; phase++)
 	{
@@ -315,28 +312,22 @@ int main(int argc, char *argv[])
 			
 			//setup local grids if universe changed. 
 			grid_time=MPI_Wtime();
-			//printf("%d AT GRIDS = 1\n", uni_rank); fflush(stdout);
 			setup_grids(&local, &local_new, N, &universe, change);
-			//printf("%d AFTER GRIDS = 1\n", uni_rank); fflush(stdout);
 			local_rows = sendcounts[uni_rank]/(N+2);
 			grid_time=MPI_Wtime()-grid_time;
 			
 			scatter_time=MPI_Wtime();
 			MPI_Comm_size(universe, &uni_size);
-			printf("%d AT Scatter size %d -- %d, %d\n", uni_rank, uni_size, sendcounts[0], sendcounts[1]); fflush(stdout);
 			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, local+(N+2), sendcounts[uni_rank], MPI_INT, 0, universe);
-			printf("%d AFTER Scatter = 1\n", uni_rank); fflush(stdout);
 			scatter_time=MPI_Wtime()-scatter_time;
 			
 			//Do iterations for this phase
 			work_time = MPI_Wtime();
-			printf("%d AT Steps = 1\n", uni_rank); fflush(stdout);
 			for (int i = 0; i < nsteps; i++)
 			{
 				Halo(local, N, local_rows, uni_rank, universe);
 				Step(&local, &local_new, N, local_rows);
 			}
-			printf("%d AFTER Steps = 1\n", uni_rank); fflush(stdout);
 			work_time = MPI_Wtime()-work_time;
 			
 			//Gather data back to main board at end of phase	
