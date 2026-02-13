@@ -154,7 +154,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 	if(disp!=NULL){free(disp);}
 	if(*local!=NULL){free(*local);}
 	if(*local_new!=NULL){free(*local_new);}
-	printf("%d AT malloc\n", uni_rank); fflush(stdout);
+	printf("AT malloc\n"); fflush(stdout);
 	sendcounts = malloc(sizeof(int)*size);
 	disp = malloc(sizeof(int)*size);
 
