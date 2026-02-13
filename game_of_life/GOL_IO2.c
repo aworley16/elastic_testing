@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
-		printf("MAIN PROCESS\n"); fflush(stdout);
+		//printf("MAIN PROCESS\n"); fflush(stdout);
 		MPI_Comm_dup(MPI_COMM_WORLD, &universe); //universe starts as dupe of WORLD
 		//if root setup initial board (either reading or by generating). 
 		if(uni_rank==0){
@@ -278,9 +278,10 @@ int main(int argc, char *argv[])
 			if(read < 0){
 				boardState = initalize_root_board(N, type_of_matrix);	
 			}
+			printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
 		}
 	}
-	printf("AT PHASE\n"); fflush(stdout);
+	//printf("AT PHASE\n"); fflush(stdout);
 	//start at phase described in bcast or 0 if initial 
 	for(; phase < num_phases; phase++)
 	{
@@ -328,7 +329,6 @@ int main(int argc, char *argv[])
 			//print phase statistics
 			if(uni_rank == 0){
 				MPI_Comm_size(universe, &uni_size); 
-				printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
 				printf("%d, %d, %d, %d,", N, nsteps, phase_size, uni_size);
 				printf("%f, %f, %f, %f, %f, %f, %f, \n",
 				        read_time,
