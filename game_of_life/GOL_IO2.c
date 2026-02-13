@@ -262,9 +262,7 @@ int main(int argc, char *argv[])
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //receive current phase via bcast
 		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	;
 		universe = new_uni;                       //apply universe handle to the new universe
-		printf("spawn at second bcast"); fflush(stdout);
-		MPI_Bcast(&phase, 1, MPI_INT, 0, universe); //receive current phase via bcast
-		printf("spawn after second bcast"); fflush(stdout);
+		
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
 	}
@@ -298,6 +296,11 @@ int main(int argc, char *argv[])
 		phase_size = phase_sizes[phase]; 
 		//printf("%d AT comm\n", uni_rank); fflush(stdout);
 		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
+		if(parent != MPI_COMM_NULL){
+			printf("spawn at second bcast"); fflush(stdout);
+			MPI_Bcast(&phase, 1, MPI_INT, 0, universe); //receive current phase via bcast
+			printf("spawn after second bcast"); fflush(stdout);
+		}
 		//printf("%d AFTER comm\n", uni_rank); fflush(stdout);
 		if(color == 0){  //if process kill signal -- kill process
 		//      		 universe should have been updated in setup_comms
