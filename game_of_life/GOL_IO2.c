@@ -130,7 +130,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);} //broadcast current phase number.
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		printf("CHECK 0\n"); fflush(stdout);
-		MPI_Comm_free(old_uni);                  //free old handle
+		MPI_Comm_free(&old_uni);                  //free old handle
 		printf("CHECK 1\n"); fflush(stdout);
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
 		spawn_time = MPI_Wtime()-spawn_time;
