@@ -313,7 +313,7 @@ int main(int argc, char *argv[])
 			
 			scatter_time=MPI_Wtime();
 			MPI_Comm_size(universe, &uni_size);
-			printf("%d AT Scatter size %d\n", uni_rank, uni_size); fflush(stdout);
+			printf("%d AT Scatter size %d -- %d, %d\n", uni_rank, uni_size, sendcounts[0], sendcounts[1]); fflush(stdout);
 			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, local+(N+2), sendcounts[uni_rank], MPI_INT, 0, universe);
 			printf("%d AFTER Scatter = 1\n", uni_rank); fflush(stdout);
 			scatter_time=MPI_Wtime()-scatter_time;
