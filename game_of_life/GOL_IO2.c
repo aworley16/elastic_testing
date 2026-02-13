@@ -74,6 +74,7 @@ int read_file(char* filename, int x, int y){
 			boardState[offset] = atoi(token);
 			offset++;
 			token = strtok(NULL, ",");
+			if(offset == (x+2)*(x+2)){fclose(ptr); return 0;}
 		}
 		k++;
     }
@@ -154,7 +155,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 	if(disp!=NULL){free(disp);}
 	if(*local!=NULL){free(*local);}
 	if(*local_new!=NULL){free(*local_new);}
-	printf("AT malloc\n"); fflush(stdout);
+	
 	sendcounts = malloc(sizeof(int)*size);
 	disp = malloc(sizeof(int)*size);
 
