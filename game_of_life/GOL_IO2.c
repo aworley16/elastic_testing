@@ -106,6 +106,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 	
 	//if exactly enough processes exist for phase, just use current universe. 
 	if(uni_size == phase_size){
+		printf("SKIP \n");
 		if(local != NULL){*change = 0;}else{*change=1;} 
 		return 0;
 	}
@@ -129,9 +130,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		MPI_Comm_spawn(argv[0], &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);} //broadcast current phase number.
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
-		printf("CHECK 0\n"); fflush(stdout);
 		MPI_Comm_free(&old_uni);                  //free old handle
-		printf("CHECK 1\n"); fflush(stdout);
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
 		spawn_time = MPI_Wtime()-spawn_time;
 		*change = 2;
@@ -261,6 +260,7 @@ int main(int argc, char *argv[])
 		universe = new_uni;                       //apply universe handle to the new universe
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
+		printf("SPAWN AFTER merge\n", uni_rank); fflush(stdout);
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
@@ -290,8 +290,9 @@ int main(int argc, char *argv[])
 		color = 1;
 		change = 0; 
 		phase_size = phase_sizes[phase]; 
+		printf("%d AT comm\n", uni_rank); fflush(stdout);
 		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
-		//printf("AFTER comm\n"); fflush(stdout);
+		printf("%d AFTER comm\n", uni_rank); fflush(stdout);
 		if(color == 0){  //if process kill signal -- kill process
 		//      		 universe should have been updated in setup_comms
 			MPI_Finalize();
