@@ -137,7 +137,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		MPI_Bcast(&phase, 1, MPI_INT, 0, *universe);
 		printf("AFTER NEW BCAST\n"); fflush(stdout); */
 		spawn_time = MPI_Wtime()-spawn_time;
-		*change = 2;
+		*change = 1;
 		return spawn_time; 
 	}
 }
@@ -150,7 +150,7 @@ int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int c
 	MPI_Comm_rank(*phase_comm, &rank);
 	
 	//if grids are setup and no change in phase, use existing grids
-	if(*local != NULL && *local_new != NULL && change!=0){
+	if(*local != NULL && change==0){
 		printf("%d NULL GRID change\n", rank);fflush(stdout);
 		return 0;
 	}
