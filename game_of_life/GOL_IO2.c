@@ -144,17 +144,18 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 
 //given a phase_comm, allocate space for local rows
 int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int change){
-
-	//if grids are setup and no change in phase, use existing grids
-	if(*local != NULL && *local_new != NULL && change!=0){
-		printf("NULL GRID change\n");fflush(stdout);
-		return 0;
-	}
-
 	int size;
 	int rank;
 	MPI_Comm_size(*phase_comm, &size);
 	MPI_Comm_rank(*phase_comm, &rank);
+	
+	//if grids are setup and no change in phase, use existing grids
+	if(*local != NULL && *local_new != NULL && change!=0){
+		printf("%d NULL GRID change\n", rank);fflush(stdout);
+		return 0;
+	}
+
+	
 	
 	//allocate space for displacements and counts;	
 	if(sendcounts!=NULL){free(sendcounts);}
