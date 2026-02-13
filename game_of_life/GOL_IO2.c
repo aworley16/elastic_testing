@@ -133,6 +133,9 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(&old_uni);                  //free old handle
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
+		printf("AT NEW BCAST\n"); fflush(stdout);
+		MPI_Bcast(&phase, 1, MPI_INT, 0, *universe);
+		printf("AFTER NEW BCAST\n"); fflush(stdout);
 		spawn_time = MPI_Wtime()-spawn_time;
 		*change = 2;
 		return spawn_time; 
@@ -256,9 +259,12 @@ int main(int argc, char *argv[])
 	{
 		//printf("CHILD PROCESS\n"); fflush(stdout);
 		MPI_Comm new_uni;
-		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //recieve current phase via bcast
+		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //receive current phase via bcast
 		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	;
 		universe = new_uni;                       //apply universe handle to the new universe
+		printf("spawn at second bcast"); fflush(stdout);
+		MPI_Bcast(&phase, 1, MPI_INT, 0, universe); //receive current phase via bcast
+		printf("spawn after second bcast"); fflush(stdout);
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
 	}
