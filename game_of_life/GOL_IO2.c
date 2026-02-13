@@ -257,10 +257,7 @@ int main(int argc, char *argv[])
 		//printf("CHILD PROCESS\n"); fflush(stdout);
 		MPI_Comm new_uni;
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //recieve current phase via bcast
-		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	
-		printf("CHECK 3\n"); fflush(stdout);
-		MPI_Comm_free(&universe);                 //clear old universe
-		printf("CHECK 4\n"); fflush(stdout);
+		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	;
 		universe = new_uni;                       //apply universe handle to the new universe
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
