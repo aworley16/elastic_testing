@@ -312,7 +312,9 @@ int main(int argc, char *argv[])
 			grid_time=MPI_Wtime()-grid_time;
 			
 			scatter_time=MPI_Wtime();
+			printf("%d AT Scatter = 1\n", uni_rank); fflush(stdout);
 			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, local+(N+2), sendcounts[uni_rank], MPI_INT, 0, universe);
+			printf("%d AFTER Scatter = 1\n", uni_rank); fflush(stdout);
 			scatter_time=MPI_Wtime()-scatter_time;
 			
 			//Do iterations for this phase
