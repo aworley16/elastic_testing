@@ -146,7 +146,10 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 int setup_grids(int** local, int** local_new, int N, MPI_Comm* phase_comm, int change){
 
 	//if grids are setup and no change in phase, use existing grids
-	if(*local != NULL && *local_new != NULL && change!=0){return 0;}
+	if(*local != NULL && *local_new != NULL && change!=0){
+		printf("NULL GRID change\n");fflush(stdout);
+		return 0;
+	}
 
 	int size;
 	int rank;
@@ -296,11 +299,7 @@ int main(int argc, char *argv[])
 		phase_size = phase_sizes[phase]; 
 		//printf("%d AT comm\n", uni_rank); fflush(stdout);
 		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
-/* 		if(parent != MPI_COMM_NULL){
-			printf("spawn at second bcast"); fflush(stdout);
-			MPI_Bcast(&phase, 1, MPI_INT, 0, universe); //receive current phase via bcast
-			printf("spawn after second bcast"); fflush(stdout);
-		} */
+
 		//printf("%d AFTER comm\n", uni_rank); fflush(stdout);
 		if(color == 0){  //if process kill signal -- kill process
 		//      		 universe should have been updated in setup_comms
