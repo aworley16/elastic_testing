@@ -133,9 +133,9 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
 		MPI_Comm_free(&old_uni);                  //free old handle
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
-		printf("AT NEW BCAST\n"); fflush(stdout);
+/* 		printf("AT NEW BCAST\n"); fflush(stdout);
 		MPI_Bcast(&phase, 1, MPI_INT, 0, *universe);
-		printf("AFTER NEW BCAST\n"); fflush(stdout);
+		printf("AFTER NEW BCAST\n"); fflush(stdout); */
 		spawn_time = MPI_Wtime()-spawn_time;
 		*change = 2;
 		return spawn_time; 
@@ -296,11 +296,11 @@ int main(int argc, char *argv[])
 		phase_size = phase_sizes[phase]; 
 		//printf("%d AT comm\n", uni_rank); fflush(stdout);
 		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
-		if(parent != MPI_COMM_NULL){
+/* 		if(parent != MPI_COMM_NULL){
 			printf("spawn at second bcast"); fflush(stdout);
 			MPI_Bcast(&phase, 1, MPI_INT, 0, universe); //receive current phase via bcast
 			printf("spawn after second bcast"); fflush(stdout);
-		}
+		} */
 		//printf("%d AFTER comm\n", uni_rank); fflush(stdout);
 		if(color == 0){  //if process kill signal -- kill process
 		//      		 universe should have been updated in setup_comms
@@ -315,9 +315,9 @@ int main(int argc, char *argv[])
 			
 			//setup local grids if universe changed. 
 			grid_time=MPI_Wtime();
-			printf("%d AT GRIDS = 1\n", uni_rank); fflush(stdout);
+			//printf("%d AT GRIDS = 1\n", uni_rank); fflush(stdout);
 			setup_grids(&local, &local_new, N, &universe, change);
-			printf("%d AFTER GRIDS = 1\n", uni_rank); fflush(stdout);
+			//printf("%d AFTER GRIDS = 1\n", uni_rank); fflush(stdout);
 			local_rows = sendcounts[uni_rank]/(N+2);
 			grid_time=MPI_Wtime()-grid_time;
 			
