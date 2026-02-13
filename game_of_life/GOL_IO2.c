@@ -127,11 +127,9 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 		//if(uni_rank==0){printf("Spawning %d processes\n", expand_num);}
 		double spawn_time = MPI_Wtime();
 		MPI_Comm_spawn(argv[0], &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
-		//if(uni_rank==0){printf("parent pass spawn\n");fflush(stdout);}
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);} //broadcast current phase number.
 		
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
-		//if(uni_rank==0){printf("After merge\n");}
 		MPI_Comm_free(universe);                  //free old handle
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
 		spawn_time = MPI_Wtime()-spawn_time;
@@ -196,6 +194,7 @@ int main(int argc, char *argv[])
 {
 	MPI_Init(&argc, &argv);	
 	double start_time = MPI_Wtime();
+	
 	//variables for selecting process ranks for phases
 	int color = 1;
 	int uni_size;
@@ -208,6 +207,7 @@ int main(int argc, char *argv[])
 	int N = atoi(argv[1]);     //size of grid N x N 
 	int nsteps = atoi(argv[2]);//iterations per phase
 	
+	//IO file names
 	char* filename = NULL;
 	char type_of_matrix = 's';  //initial board state no file provided. 	
 	int file = 0;
@@ -240,15 +240,15 @@ int main(int argc, char *argv[])
     MPI_Comm_get_parent(&parent); //check if this is a spawned child processes
 
 	//local timing variables
-	double read_time;
+	double read_time = 0;
 	double comm_time;
 	double scatter_time;
 	double spawn_time;
 	double grid_time;
 	double work_time;
 	double gather_time;
-	double write_time;
-	double total_time;
+	//double write_time;
+	//double total_time;
 
 	//if child process go ahead a merge into existing universe 
 	if(parent != MPI_COMM_NULL) 
@@ -278,9 +278,6 @@ int main(int argc, char *argv[])
 			if(read < 0){
 				boardState = initalize_root_board(N, type_of_matrix);	
 			}
-			printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
-			
-			
 		}
 	}
 	printf("AT PHASE\n"); fflush(stdout);
@@ -331,6 +328,7 @@ int main(int argc, char *argv[])
 			//print phase statistics
 			if(uni_rank == 0){
 				MPI_Comm_size(universe, &uni_size); 
+				printf("N, nsteps, phase_size, uni_size,read_time,spawn_time,comm_time,grid_time, scatter_time,work_time, gather_time \n");
 				printf("%d, %d, %d, %d,", N, nsteps, phase_size, uni_size);
 				printf("%f, %f, %f, %f, %f, %f, %f, \n",
 				        read_time,
@@ -341,9 +339,11 @@ int main(int argc, char *argv[])
 						work_time,
 						gather_time
 			    );
+				readtime=0; //reset read time for next phase. 
 			}	
 		}fflush(stdout);
-	}	
+	}
+	//print write time and overall time
 	if(uni_rank ==0){
 		double write_start = MPI_Wtime();
 		if(filename==NULL){filename="out--2.csv";}
