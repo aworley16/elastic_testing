@@ -107,7 +107,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 	//if exactly enough processes exist for phase, just use current universe. 
 	if(uni_size == phase_size){
 		printf("%d SKIP \n", uni_rank);
-		if(local != NULL){*change = 0; *color=1}else{*change=1;} 
+		if(local != NULL){*change = 0; *color=1;}else{*change=1;} 
 		return 0;
 	}
 	// if too many processes exist, split and send kill flag (color == 0) to unneeded processes. 
