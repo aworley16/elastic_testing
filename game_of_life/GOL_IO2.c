@@ -339,7 +339,7 @@ int main(int argc, char *argv[])
 						work_time,
 						gather_time
 			    );
-				readtime=0; //reset read time for next phase. 
+				read_time=0; //reset read time for next phase. 
 			}	
 		}fflush(stdout);
 	}
