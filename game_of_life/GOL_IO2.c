@@ -121,16 +121,17 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 	}
 	//if not enough processes exist, spawn up new processes and merge into universe
 	else{
+		MPI_Comm old_uni = *universe;
 		MPI_Comm new_uni;
 		MPI_Comm bridge; 
 		int expand_num = phase_size - uni_size;
-		//if(uni_rank==0){printf("Spawning %d processes\n", expand_num);}
 		double spawn_time = MPI_Wtime();
 		MPI_Comm_spawn(argv[0], &argv[1], expand_num, MPI_INFO_NULL, 0, *universe, &bridge, MPI_ERRCODES_IGNORE); 
 		if(uni_rank==0){MPI_Bcast(&phase, 1, MPI_INT, MPI_ROOT, bridge);} //broadcast current phase number.
-		
 		MPI_Intercomm_merge(bridge, 0, &new_uni); //create new universe
-		MPI_Comm_free(universe);                  //free old handle
+		printf("CHECK 0\n"); fflush(stdout);
+		MPI_Comm_free(old_uni);                  //free old handle
+		printf("CHECK 1\n"); fflush(stdout);
 		*universe = new_uni;              //assign new uni to uni handle -- check if scoping issue occurs. 
 		spawn_time = MPI_Wtime()-spawn_time;
 		*change = 2;
@@ -257,7 +258,9 @@ int main(int argc, char *argv[])
 		MPI_Comm new_uni;
 		MPI_Bcast(&phase, 1, MPI_INT, 0, parent); //recieve current phase via bcast
 		MPI_Intercomm_merge(parent, 0, &new_uni); //merge with parent comm (current universe)	
-		MPI_Comm_free(&universe);                  //clear old universe
+		printf("CHECK 3\n"); fflush(stdout);
+		MPI_Comm_free(&universe);                 //clear old universe
+		printf("CHECK 4\n"); fflush(stdout);
 		universe = new_uni;                       //apply universe handle to the new universe
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
@@ -310,7 +313,7 @@ int main(int argc, char *argv[])
 			
 			scatter_time=MPI_Wtime();
 			MPI_Scatterv(boardState+(N+2), sendcounts, disp, MPI_INT, local+(N+2), sendcounts[uni_rank], MPI_INT, 0, universe);
-			scatter_time=MPI_Wtime();
+			scatter_time=MPI_Wtime()-scatter_time;
 			
 			//Do iterations for this phase
 			work_time = MPI_Wtime();
