@@ -106,7 +106,7 @@ double setup_comms(int N, int phase, int phase_size, MPI_Comm* universe, int* co
 	
 	//if exactly enough processes exist for phase, just use current universe. 
 	if(uni_size == phase_size){
-		printf("%d SKIP \n", uni_rank);
+		//printf("%d SKIP \n", uni_rank);
 		if(local != NULL){*change = 0; *color=1;}else{*change=1;} 
 		return 0;
 	}
@@ -260,7 +260,6 @@ int main(int argc, char *argv[])
 		universe = new_uni;                       //apply universe handle to the new universe
 		MPI_Comm_size(universe, &uni_size);      
 		MPI_Comm_rank(universe, &uni_rank);
-		printf("SPAWN AFTER merge\n", uni_rank); fflush(stdout);
 	}
     else //if original dup MPI_COMM_WORLD so we have a handle that we can manipulate 
 	{
@@ -290,9 +289,9 @@ int main(int argc, char *argv[])
 		color = 1;
 		change = 0; 
 		phase_size = phase_sizes[phase]; 
-		printf("%d AT comm\n", uni_rank); fflush(stdout);
+		//printf("%d AT comm\n", uni_rank); fflush(stdout);
 		spawn_time = setup_comms(N, phase, phase_size, &universe, &color, argv, &change);
-		printf("%d AFTER comm\n", uni_rank); fflush(stdout);
+		//printf("%d AFTER comm\n", uni_rank); fflush(stdout);
 		if(color == 0){  //if process kill signal -- kill process
 		//      		 universe should have been updated in setup_comms
 			MPI_Finalize();
@@ -301,12 +300,14 @@ int main(int argc, char *argv[])
 		comm_time = MPI_Wtime()-comm_time;
 		
 		//if participating in phase
-		printf("%d AT Color = 1\n", uni_rank); fflush(stdout);
+		
 		if(color == 1){
 			
 			//setup local grids if universe changed. 
 			grid_time=MPI_Wtime();
+			printf("%d AT GRIDS = 1\n", uni_rank); fflush(stdout);
 			setup_grids(&local, &local_new, N, &universe, change);
+			printf("%d AFTER GRIDS = 1\n", uni_rank); fflush(stdout);
 			local_rows = sendcounts[uni_rank]/(N+2);
 			grid_time=MPI_Wtime()-grid_time;
 			
@@ -316,11 +317,13 @@ int main(int argc, char *argv[])
 			
 			//Do iterations for this phase
 			work_time = MPI_Wtime();
+			printf("%d AT Steps = 1\n", uni_rank); fflush(stdout);
 			for (int i = 0; i < nsteps; i++)
 			{
 				Halo(local, N, local_rows, uni_rank, universe);
 				Step(&local, &local_new, N, local_rows);
 			}
+			printf("%d AFTER Steps = 1\n", uni_rank); fflush(stdout);
 			work_time = MPI_Wtime()-work_time;
 			
 			//Gather data back to main board at end of phase	
